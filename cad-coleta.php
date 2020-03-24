@@ -9,13 +9,13 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700?v=0.6" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/fontawesome-all.css" rel="stylesheet">
-    <link href="css/swiper.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link href="css/magnific-popup.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/third/bootstrap.css" rel="stylesheet">
+    <link href="css/third/fontawesome-all.css" rel="stylesheet">
+    <link href="css/third/swiper.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/third/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/third/owl.theme.default.min.css">
+    <link href="css/third/magnific-popup.css" rel="stylesheet">
+    <link href="css/ours/styles.css" rel="stylesheet">
 
     <link rel="icon" href="images/faviconCMA.ico">
 </head>
@@ -130,16 +130,16 @@
             </div>
         </div>
 
-        <script src="js/jquery.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.easing.min.js"></script>
-        <script src="js/swiper.min.js"></script>
-        <script src="js/jquery.magnific-popup.js"></script>
-        <script src="js/morphext.min.js"></script>
-        <script src="js/validator.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/scripts.js"></script>
+        <script src="js/third/jquery.min.js"></script>
+        <script src="js/third/popper.min.js"></script>
+        <script src="js/third/bootstrap.min.js"></script>
+        <script src="js/third/jquery.easing.min.js"></script>
+        <script src="js/third/swiper.min.js"></script>
+        <script src="js/third/jquery.magnific-popup.js"></script>
+        <script src="js/third/morphext.min.js"></script>
+        <script src="js/third/validator.min.js"></script>
+        <script src="js/third/owl.carousel.min.js"></script>
+        <script src="js/ours/general.js"></script>
     </div>
 </body>
 

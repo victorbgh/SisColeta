@@ -257,7 +257,7 @@ select {
 	-ms-appearance: none;
     -o-appearance: none;
     appearance: none;
-    background-image: url('../images/down-arrow.png');
+    background-image: url('../../images/down-arrow.png');
     background-position: 96% 50%;
     background-repeat: no-repeat;
     outline: none;
@@ -1171,7 +1171,7 @@ input[type='checkbox'] {
 .basic-4 {
 	padding-top: 6.5rem;
 	padding-bottom: 6.75rem;
-	background: url('../images/download-background.jpg') center center no-repeat;
+	background: url('../../images/download-background.jpg') center center no-repeat;
 	background-size: cover; 
 }
 
@@ -1329,7 +1329,7 @@ a.back-to-top {
 	width: 2.625rem;
 	height: 2.625rem;
 	border-radius: 1.875rem;
-	background: rgba(0,0,0,0.4) url("../images/up-arrow.png") no-repeat center 47%;
+	background: rgba(0,0,0,0.4) url("../../images/up-arrow.png") no-repeat center 47%;
 	background-size: 1.125rem 1.125rem;
 	text-indent: -9999px;
 }
