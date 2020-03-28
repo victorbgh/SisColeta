@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if(isset($_SESSION['loggedIN'])){
+        header('Location: ../index.php');
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,19 +44,32 @@
 
         <div class="login-page">
             <div class="form">
-            <form class="register-form" id="login-form" role="form" action="php/login.php" method="post">
-                <input type="text" placeholder="Nome completo"/>
-                <input type="password" placeholder="Senha"/>
-                <input type="text" placeholder="E-mail"/>
-                <button>Registrar</button>
-                <p class="message">Já registrado? <a href="#">Entrar</a></p>
-            </form>
-            <form class="login-form">
-                <input type="text" placeholder="E-mail"/>
-                <input type="password" placeholder="Senha"/>
-                <button id="btn-login">login</button>
-                <p class="message">Não é registrado? <a href="#">Criar uma conta</a></p>
-            </form>
+
+                <form class="register-form" id="register-form" role="form">
+                    <input type="text" name="nome" placeholder="Nome completo"/>
+                    <input type="password" name="senha"  placeholder="Senha"/>
+                    <input type="password" name="senhaRepetida" placeholder="Repita a senha"/>
+                    <input type="text" name="email" placeholder="E-mail"/>
+                    <button id="btn-register">Registrar</button>
+                    <p class="message">Já registrado? <a href="#">Entrar</a></p>
+                </form>
+
+                <form class="login-form" id="login-form" action="php/valida.php" method="post">
+                <div class="mensagem-erro"></div>
+                    <input type="text" name="email" id="email" placeholder="E-mail"/>
+                    <input type="password" name="senha" id="senha" placeholder="Senha"/>
+                    <button type="button" id="login" onclick="logar()">login</button>
+                    <p class="message">Não é registrado? <a href="#">Criar uma conta</a></p>
+                </form>
+                <!-- ARRUMAR -->
+                <p class="text-center text-danger">
+                    <?php
+                        if(isset($_SESSION['loginErro'])){
+                            echo $_SESSION['loginErro'];
+                            unset($_SESSION['loginErro']);
+                        }
+                    ?>
+                </p>
             </div>
         </div>
 
@@ -73,6 +93,7 @@
         <script src="js/third/validator.min.js"></script>
         <script src="js/third/owl.carousel.min.js"></script>
         <script src="js/ours/general.js"></script>
+        <script src="js/ours/login.js"></script>
     </div>
 </body>
 </html>

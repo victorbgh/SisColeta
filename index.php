@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['loggedIN'])){
+        header("Location: login.php");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -32,10 +40,9 @@
         </div>
 
         <div id="header" class="navtop"></div>
-        <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top" style="top: 20px;">
-            <!-- <a class="navbar-brand logo-image" href="index.html"><img src="images/logo-transparente.png"
-                    alt="alternative" height="auto" width="180"></a> -->
-                    <a class="navbar-brand logo-image" href="index.html" style="color: #000 !important; text-decoration: none;">Rayer Maps</a>
+
+        <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
+            <a class="navbar-brand logo-image" href="index.php" style="color: #000 !important; text-decoration: none;">Rayer Maps</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cma-navbars"
                 aria-controls="cma-navbars" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-awesome fas fa-bars"></span>
@@ -44,13 +51,24 @@
             <div class="collapse navbar-collapse" id="cma-navbars">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="index.html">Inicio <span class="sr-only">(current)</span></a>
+                        <a class="nav-link page-scroll" href="index.php">Inicio <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="cad-coleta.html">Cadastrar local de coleta</a>
+                        <a class="nav-link page-scroll" href="cad-coleta.php">Cadastrar local de coleta</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="maps.html">Mapa</a>
+                        <a class="nav-link page-scroll" href="maps.php">Mapa</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a style="color: #000 !important;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user"></i> Victor</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Conta</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalLong" href="" onclick="confirmeSair()"><i class="fa fa-sign-out-alt"></i> Sair</a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -84,6 +102,8 @@
             </div>
         </div>
 
+        
+
         <script src="js/third/jquery.min.js"></script>
         <script src="js/third/popper.min.js"></script>
         <script src="js/third/bootstrap.min.js"></script>
@@ -94,6 +114,7 @@
         <script src="js/third/validator.min.js"></script>
         <script src="js/third/owl.carousel.min.js"></script>
         <script src="js/ours/general.js"></script>
+        <script src="js/ours/login.js"></script>
     </div>
 </body>
 

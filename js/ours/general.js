@@ -102,8 +102,8 @@ $(document).ready(function(){
 
     var hash = window.location.href;
      
-    if($(window).scrollTop() === 0 && window.location.href.indexOf('index.html') > -1) {
-        $('nav').addClass('topo');
+    if($(window).scrollTop() === 0) {
+		$('nav').addClass('topo');		
     }else{
         $('nav').removeClass('topo');
     }
@@ -125,6 +125,16 @@ $(document).ready(function(){
       }
 
 });
+
+$(document).scroll(function() {
+    var hash = window.location.href;
+     
+    if($(window).scrollTop() === 0) {
+        $('nav').addClass('topo');
+    }else{
+        $('nav').removeClass('topo');
+    }
+ });
 
 /* usar funcao para determinar distancia */
 function getDistance(lat1,lon1,lat2,lon2) {

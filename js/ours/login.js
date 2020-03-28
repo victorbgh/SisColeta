@@ -1,39 +1,62 @@
 $('document').ready(function(){
 
-	$("#btn-login").click(function(){
-		var data = $("#login-form").serialize();
-			
-		$.ajax({
-			type : 'POST',
-			url  : '../../php/login.php',
-			data : data,
-			dataType: 'json',
-			beforeSend: function()
-			{
-				$("#btn-login").html('Validando ...');
-			},
-			success :  function(response){						
-				if(response.codigo == "1"){	
-					$("#btn-login").html('Entrar');
-					$("#login-alert").css('display', 'none')
-					window.location.href = "index.php";
-				}
-				else{			
-					$("#btn-login").html('LOGIN');
-					$("#login-alert").css('display', 'block')
-					$("#mensagem").html('<strong>Erro! </strong>' + response.mensagem);
-				}
-		    }
-		});
+	$('#email, #senha').keypress(function(event){
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if(keycode == '13'){
+			logar();
+		}
 	});
-
+	
 });
 
-/* NOTE: USAR MODAL */
+function logar(){
+	var email = $('#email').val();
+	var senha = $('#senha').val(); 
+
+	if(email == "" || senha == ""){
+		console.log('errado');
+	}else{
+
+		$.ajax({
+			url:"php/valida.php",
+			method: "POST",
+			data: {
+				login: 1,
+				email: email,
+				senha: senha
+			},
+			success :  function(response){						
+				console.log(response);
+				if(response.indexOf('success') >= 0){
+					window.location = 'index.php';
+				}
+			},
+			dataType: 'text'
+		})
+	}
+
+	return false;
+}
+
 function confirmeSair() {
-    if (confirm('Deseja realmente sair do sistema?')) {
-        window.location.href = "logout.php";
-    } else {
-        return false;
-    }
+	let modalAppend = `<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmação</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span style="font-weight: bold;">Deseja realmente sair do sistema ?</span>
+                </div>
+                    <div class="modal-footer">
+						<a style="text-decoration: none;" href="php/logout.php" class="btn btn-primary">Confirmar</a>
+                        <a style="text-decoration: none; color: #fff;" class="btn btn-secondary" data-dismiss="modal">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+		</div>`
+		$('body').append(modalAppend);
 }

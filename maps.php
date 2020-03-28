@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['loggedIN'])){
+        header("Location: login.php");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -32,9 +40,9 @@
     <div id="header" class="navtop"></div>
 
     <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top " style="top: 20px;">
-    <!-- <a class="navbar-brand logo-image" href="index.html"><img src="images/logo-transparente.png"
+    <!-- <a class="navbar-brand logo-image" href="index.php"><img src="images/logo-transparente.png"
             alt="alternative" height="auto" width="180"></a> -->
-            <a class="navbar-brand logo-image" href="index.html" style="color: #000 !important; text-decoration: none;">Rayer Maps</a>
+            <a class="navbar-brand logo-image" href="index.php" style="color: #000 !important; text-decoration: none;">Rayer Maps</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cma-navbars"
           aria-controls="cma-navbars" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-awesome fas fa-bars"></span>
@@ -43,13 +51,24 @@
       <div class="collapse navbar-collapse" id="cma-navbars">
           <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                  <a class="nav-link page-scroll" href="index.html">Inicio </a>
+                  <a class="nav-link page-scroll" href="index.php">Inicio </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link page-scroll" href="cad-coleta.html">Cadastrar local de coleta </a>
+                  <a class="nav-link page-scroll" href="cad-coleta.php">Cadastrar local de coleta </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link page-scroll" href="maps.html">Mapa <span class="sr-only">(current)</span></a>
+                  <a class="nav-link page-scroll" href="maps.php">Mapa <span class="sr-only">(current)</span></a>
+              </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                  <a style="color: #000 !important;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-user"></i> Victor</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Conta</a>
+                      <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalLong" href="" onclick="confirmeSair()"><i class="fa fa-sign-out-alt"></i> Sair</a>
+                  </div>
               </li>
           </ul>
         </div>
@@ -70,13 +89,75 @@
     </div>
 
     <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -15.8102797, lng: -47.8921486},
-          zoom: 8
+      var customLabel = {
+        restaurant: {
+          label: 'R'
+        },
+        bar: {
+          label: 'B'
+        }
+      };
+
+        function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(-33.863276, 151.207977),
+          zoom: 12
         });
+        var infoWindow = new google.maps.InfoWindow;
+
+          downloadUrl('php/marcadores.php', function(data) {
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName('marker');
+            Array.prototype.forEach.call(markers, function(markerElem) {
+              var id = markerElem.getAttribute('id');
+              var name = markerElem.getAttribute('name');
+              var address = markerElem.getAttribute('address');
+              var type = markerElem.getAttribute('type');
+              var point = new google.maps.LatLng(
+                  parseFloat(markerElem.getAttribute('lat')),
+                  parseFloat(markerElem.getAttribute('lng')));
+
+              var infowincontent = document.createElement('div');
+              var strong = document.createElement('strong');
+              strong.textContent = name
+              infowincontent.appendChild(strong);
+              infowincontent.appendChild(document.createElement('br'));
+
+              var text = document.createElement('text');
+              text.textContent = address
+              infowincontent.appendChild(text);
+              var icon = customLabel[type] || {};
+              var marker = new google.maps.Marker({
+                map: map,
+                position: point,
+                label: icon.label
+              });
+              marker.addListener('click', function() {
+                infoWindow.setContent(infowincontent);
+                infoWindow.open(map, marker);
+              });
+            });
+          });
+        }
+
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
       }
+
+      function doNothing() {}
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjchTw42oDieCVSdDFoKWw6Ua69xAf9AQ&callback=initMap"
     async defer></script>
@@ -90,5 +171,6 @@
     <script src="js/third/validator.min.js"></script>
     <script src="js/third/owl.carousel.min.js"></script>
     <script src="js/ours/general.js"></script>
+    <script src="js/ours/login.js"></script>
   </body>
 </html>
