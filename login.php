@@ -45,22 +45,22 @@
         <div class="login-page">
             <div class="form">
 
-                <form class="register-form" id="register-form" role="form">
-                    <input type="text" name="nome" placeholder="Nome completo"/>
-                    <input type="password" name="senha"  placeholder="Senha"/>
-                    <input type="password" name="senhaRepetida" placeholder="Repita a senha"/>
-                    <input type="text" name="email" placeholder="E-mail"/>
-                    <button id="btn-register">Registrar</button>
+                <form class="register-form" id="register-form">
+                    <input type="text" name="cadNome" id="cadNome" placeholder="Nome completo"/>
+                    <input type="text" name="cadEmail" id="cadEmail" placeholder="E-mail"/>
+                    <input type="password" name="senha1" id="senha1"  placeholder="Senha"/>
+                    <input type="password" name="senha2" id="senha2" placeholder="Repita a senha"/>
+                    <button type="button" id="btn-register" onclick="registrar()">Registrar</button>
                     <p class="message">Já registrado? <a href="#">Entrar</a></p>
                 </form>
 
-                <form class="login-form" id="login-form" action="php/valida.php" method="post">
-                <div class="mensagem-erro"></div>
+                <form class="login-form" id="login-form">
                     <input type="text" name="email" id="email" placeholder="E-mail"/>
                     <input type="password" name="senha" id="senha" placeholder="Senha"/>
                     <button type="button" id="login" onclick="logar()">login</button>
                     <p class="message">Não é registrado? <a href="#">Criar uma conta</a></p>
                 </form>
+                <p id="msgErroFront" class="text-center text-danger"></p>
                 <!-- ARRUMAR -->
                 <p class="text-center text-danger">
                     <?php

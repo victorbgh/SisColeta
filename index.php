@@ -80,13 +80,20 @@
                     <h1>Sistema rayer maps</h1>
                     <div class="divider"><span></span></div>
                     <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-                        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type 
-                        specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining 
-                        essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum 
-                        passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        Bem vindo ao sistema Rayer Maps, o objetivo do sistema é centralizar todos os pontos de coleta, descarte e postos de coleta de lixo reciclavel.
                     </p>
-
+                    <p>
+                        Os tipos de lixo que estão centralizados no sistema são:
+                    </p>
+                    <br>
+                    <p>- Lixo eletronico</p>
+                    <p>- Lixo hospitalar</p>
+                    <p>- Lixo reciclavel&nbsp;</p>
+                    <br>
+                    <p>No mapa, você tera a opção de mostrar todos pontos cadastrados por todos os usuários, além de ter a possibilidade de filtrar os pontos cadastrados
+                    por tipo.</p>
+                    <br>
+                    <p>Este sistema foi desenvolvido para o trabalho de conclusão de curso da faculdade UPIS - UNIÃO PIONEIRA DE INTEGRAÇÃO SOCIAL pelo curso de sistemas de informação</p>
                 </div>
             </div>
         </div>

@@ -39,7 +39,7 @@
 
     <div id="header" class="navtop"></div>
 
-    <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top " style="top: 20px;">
+    <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top ">
     <!-- <a class="navbar-brand logo-image" href="index.php"><img src="images/logo-transparente.png"
             alt="alternative" height="auto" width="180"></a> -->
             <a class="navbar-brand logo-image" href="index.php" style="color: #000 !important; text-decoration: none;">Rayer Maps</a>

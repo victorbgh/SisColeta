@@ -1,11 +1,11 @@
 <?php
     session_start();
+    require_once("conexao.php");
 
     if(isset($_SESSION['loggedIN'])){
         header('Location: ../index.php');
         exit();
     }
-    require_once("conexao.php");
 
     if (isset($_POST['login'])){
 
@@ -16,9 +16,8 @@
         if($data->num_rows > 0){
             $_SESSION['loggedIN'] = '1';
             $_SESSION['email'] = $email;
-            
             exit('success');
         } else
-            exit('<font color="red">Login incorreto</font>');
+            exit('Login e/ou senha incorreto(s)!');
     }
 ?>
