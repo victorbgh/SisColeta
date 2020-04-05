@@ -39,9 +39,7 @@ function registrar(){
 				senhaRepetida:senhaRepetida
 			},
 			success :  function(response){						
-				console.log(response);
 				if(response.indexOf('success') >= 0){
-					window.location = 'login.php';
 					console.log("deu certo carai");
 					confirmacaoRegistro();
 				}else{
@@ -108,9 +106,10 @@ function confirmeSair() {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <span style="font-weight: bold;">Cadastro realizado com sucesso!</span>
+                    <span style="font-weight: bold;">Gostaria de sair do sistema?</span>
                 </div>
-                    <div class="modal-footer">
+					<div class="modal-footer">
+						<a style="text-decoration: none; color: #fff;" class="btn btn-primary" href="php/logout.php">confirmar</a>
                         <a style="text-decoration: none; color: #fff;" class="btn btn-secondary" data-dismiss="modal">Fechar</a>
                     </div>
                 </div>
@@ -155,14 +154,42 @@ function confirmacaoRegistro() {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <span style="font-weight: bold;">Deseja realmente sair do sistema ?</span>
+                    <span style="font-weight: bold;">Cadastro realizado com sucesso</span>
                 </div>
                     <div class="modal-footer">
-						<a style="text-decoration: none;" href="php/logout.php" class="btn btn-primary">Confirmar</a>
-                        <a style="text-decoration: none; color: #fff;" class="btn btn-secondary" data-dismiss="modal">Cancelar</a>
+                        <a style="text-decoration: none; color: #fff;" class="btn btn-secondary" data-dismiss="modal" onclick="resetarLogin()">Fechar</a>
                     </div>
                 </div>
             </div>
 		</div>`
 		$('body').append(modalAppend);
+		$("#exampleModalLong").modal();
+}
+
+function resetarLogin(){
+	$('#cadNome').val('');
+	$('#cadEmail').val('');
+	$('#senha1').val('');
+	$('#senha2').val('');
+	$('#entrarLogin').click();
+	
+	// por algum motivo eu tive que chamar o ajax pra deslogar dps de persistir o cad-usuario
+	$.ajax({
+		url:"php/logout.php",
+		method: "POST",
+		success :  function(response){						
+			if(response.indexOf('success') >= 0){
+				// window.location = 'login.php';
+				console.log("deu certo carai");
+			}else{
+				$('#msgErroFront').html(response);
+				$('#msgErroFront').show();
+			}
+		},
+		error: function(response){
+			$('#msgErroFront').html("Erro interno no servidor");
+			$('#msgErroFront').show();				
+		},
+		dataType: 'text'
+	})
 }

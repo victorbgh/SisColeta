@@ -51,7 +51,7 @@
                     <input type="password" name="senha1" id="senha1"  placeholder="Senha"/>
                     <input type="password" name="senha2" id="senha2" placeholder="Repita a senha"/>
                     <button type="button" id="btn-register" onclick="registrar()">Registrar</button>
-                    <p class="message">Já registrado? <a href="#">Entrar</a></p>
+                    <p class="message">Já registrado? <a href="#" id="entrarLogin">Entrar</a></p>
                 </form>
 
                 <form class="login-form" id="login-form">
@@ -84,6 +84,7 @@
         </div>
 
         <script src="js/third/jquery.min.js"></script>
+        <script src="js/third/jquery.mask.min.js"></script>
         <script src="js/third/popper.min.js"></script>
         <script src="js/third/bootstrap.min.js"></script>
         <script src="js/third/jquery.easing.min.js"></script>
@@ -94,6 +95,7 @@
         <script src="js/third/owl.carousel.min.js"></script>
         <script src="js/ours/general.js"></script>
         <script src="js/ours/login.js"></script>
+        <script src="js/ours/coleta.js"></script>
     </div>
 </body>
 </html>

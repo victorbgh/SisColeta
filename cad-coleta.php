@@ -73,19 +73,19 @@
                 </ul>
             </div>
         </nav>
+
         <div class="masked">
             <div class="container box-shadow">
                 <div class="heading">
                     <h1>Cadastrar ponto de coleta</h1>
                     <div class="divider"><span></span></div>
-
                     <div class="col-lg-12 col-sm-12 col-xs-12">
                         <div class="contact-block">
                           <form id="contactForm">
                             <div class="row">
                               <div class="col-md-12">
                                 <div class="form-group">
-                                  <input type="text" class="form-control" id="name" name="name" placeholder="Nome do local" required data-error="Por favor, digite o nome do local">
+                                  <input type="text" class="form-control" id="nomeColeta" name="nomeLocal" placeholder="Nome do local" required data-error="Por favor, digite o nome do local">
                                   <div class="help-block with-errors"></div>
                                 </div>                                 
                               </div>
@@ -103,35 +103,38 @@
                               </div>
                               <div class="col-md-12">
                                 <div class="form-group">
-                                    <select name="select" class="form-control">
+                                    <select name="select" class="form-control" id="tipoLixo">
                                         <option value="valor1" selected>Selecione o tipo de lixo que o local recolhe</option> 
-                                        <option value="valor2">Lixo eletrônico</option>
-                                        <option value="valor3">lixo hospitalar</option>
+                                        <option value="Lixo eletrônico">Lixo eletrônico</option>
+                                        <option value="lixo hospitalar">lixo hospitalar</option>
                                     </select>
                                   <div class="help-block with-errors"></div>
                                 </div> 
                               </div>
                               <div class="col-md-4">
                                 <div class="form-group">
-                                  <input type="number" placeholder="Latitude" id="lat" class="form-control" name="lat" required data-error="Por favor, digite a latitude">
+                                  <input type="text" placeholder="Latitude" id="lat" class="form-control latitude" name="lat" required data-error="Por favor, digite a latitude">
                                   <div class="help-block with-errors"></div>
-                                </div> 
+                                </div>
                               </div>
                               <div class="col-md-4">
                                 <div class="form-group">
-                                  <input type="number" placeholder="Longitude" id="lng" class="form-control" name="lng" required data-error="Por favor, digite a longitude">
+                                  <input type="text" placeholder="Longitude" id="lng" class="form-control longitude" name="lng" required data-error="Por favor, digite a longitude">
                                   <div class="help-block with-errors"></div>
-                                </div> 
+                                </div>
                               </div>
                               <div class="col-md-12">
                                 <div class="submit-button text-center">
-                                  <button class="btn btn-success" id="submit" type="submit">Cadastrar</button>
+                                  <button type="button" class="btn btn-success" onclick="registrarPonto()">Cadastrar</button>
                                   <div id="msgSubmit" class="h3 text-center hidden"></div> 
                                   <div class="clearfix"></div> 
                                 </div>
                               </div>
                             </div>            
                           </form>
+                          <br>
+                          <p id="msgErroFront" class="text-center text-danger"></p>
+                          <br>
                         </div>
                     </div>
                 </div>
@@ -149,6 +152,7 @@
         </div>
 
         <script src="js/third/jquery.min.js"></script>
+        <script src="js/third/jquery.mask.min.js"></script>
         <script src="js/third/popper.min.js"></script>
         <script src="js/third/bootstrap.min.js"></script>
         <script src="js/third/jquery.easing.min.js"></script>
@@ -159,6 +163,7 @@
         <script src="js/third/owl.carousel.min.js"></script>
         <script src="js/ours/general.js"></script>
         <script src="js/ours/login.js"></script>
+        <script src="js/ours/coleta.js"></script>
     </div>
 </body>
 

@@ -112,6 +112,7 @@
         
 
         <script src="js/third/jquery.min.js"></script>
+        <script src="js/third/jquery.mask.min.js"></script>
         <script src="js/third/popper.min.js"></script>
         <script src="js/third/bootstrap.min.js"></script>
         <script src="js/third/jquery.easing.min.js"></script>
@@ -122,6 +123,7 @@
         <script src="js/third/owl.carousel.min.js"></script>
         <script src="js/ours/general.js"></script>
         <script src="js/ours/login.js"></script>
+        <script src="js/ours/coleta.js"></script>
     </div>
 </body>
 
