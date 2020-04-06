@@ -37,7 +37,7 @@
         </div>
 
         <div id="header" class="navtop"></div>
-        <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top" style="top: 20px; padding: 15px;">
+        <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top topo" style="padding: 15px;">
             <span class="navbar-brand logo-image" href="login.html" 
             style="color: #000 !important; text-decoration: none; margin-left: auto; margin-right: auto; font-size: 2.25rem !important;">Rayer Maps</span>
         </nav>
