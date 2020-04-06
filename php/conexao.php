@@ -1,8 +1,8 @@
 <?php
-    $servidor = "localhost";
-    $usuario = "root";
-    $senha = "";
-    $dbname = "rayer-maps";    
+    $servidor = "y06qcehxdtkegbeb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
+    $usuario = "i3n87jtanlh2jrzm";
+    $senha = "fsw5gbc10hry2fxf";
+    $dbname = "rayer-maps-jawsdb";    
     //Criar a conexao
     $conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
     
