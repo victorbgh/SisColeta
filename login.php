@@ -23,7 +23,7 @@
 
     <link rel="icon" href="">
     
-    <title>Rayer Maps - Login</title>
+    <title>SisColeta - Login</title>
 </head>
 <body data-spy="scroll" data-target=".fixed-top">
     <div class="top">
