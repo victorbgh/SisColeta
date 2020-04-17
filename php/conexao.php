@@ -5,7 +5,7 @@
     // $senha = "";
     // $dbname = "rayer-maps";    
 
-    //Usar quando for commitar, ambiente de teste, comentar o de desenvolvimento    
+    //Usar quando for commitar, ambiente de teste, comentar o de desenvolvimento e usar estas configurações    
     $servidor = "y06qcehxdtkegbeb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
     $usuario = "i3n87jtanlh2jrzm";
     $senha = "fsw5gbc10hry2fxf";

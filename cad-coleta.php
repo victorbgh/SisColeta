@@ -42,7 +42,7 @@
         <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
             <!-- <a class="navbar-brand logo-image" href="index.php"><img src="images/logo-transparente.png"
                     alt="alternative" height="auto" width="180"></a> -->
-                    <a class="navbar-brand logo-image" href="index.php" style="color: #000 !important; text-decoration: none;">Rayer Maps</a>
+                    <a class="navbar-brand logo-image" href="index.php" style="color: #000 !important; text-decoration: none;">Sis<span style="color:green;">Coleta</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cma-navbars"
                 aria-controls="cma-navbars" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-awesome fas fa-bars"></span>
@@ -145,7 +145,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <p class="p-small">© Copyright Rayer Maps 2019 Todos os direitos reservados</p>
+                        <p class="p-small">© Copyright SisColeta 2019 Todos os direitos reservados</p>
                     </div>
                 </div>
             </div>

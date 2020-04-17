@@ -42,7 +42,7 @@
         <div id="header" class="navtop"></div>
 
         <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
-            <a class="navbar-brand logo-image" href="index.php" style="color: #000 !important; text-decoration: none;">Rayer Maps</a>
+            <a class="navbar-brand logo-image" href="index.php" style="color: #000 !important; text-decoration: none;">Sis<span style="color:green;">Coleta</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cma-navbars"
                 aria-controls="cma-navbars" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-awesome fas fa-bars"></span>
@@ -77,10 +77,10 @@
         <div class="masked">
             <div class="container box-shadow">
                 <div class="heading" style="padding: 20px;">
-                    <h1>Sistema rayer maps</h1>
+                    <h1>Sis<span style="color:green;">Coleta</span></h1>
                     <div class="divider"><span></span></div>
                     <p>
-                        Bem vindo ao sistema Rayer Maps, o objetivo do sistema é centralizar todos os pontos de coleta, descarte e postos de coleta de lixo reciclavel.
+                        Bem vindo ao Sis<span style="color:green;">Coleta</span>, o objetivo do sistema é centralizar todos os pontos de coleta, descarte e postos de coleta de lixo reciclavel.
                     </p>
                     <p>
                         Os tipos de lixo que estão centralizados no sistema são:
@@ -103,7 +103,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <p class="p-small">© Copyright Rayer Maps 2019 Todos os direitos reservados</p>
+                        <p class="p-small">© Copyright SisColeta 2019 Todos os direitos reservados</p>
                     </div>
                 </div>
             </div>

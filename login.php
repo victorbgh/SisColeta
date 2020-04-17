@@ -39,7 +39,7 @@
         <div id="header" class="navtop"></div>
         <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top topo" style="padding: 15px;">
             <span class="navbar-brand logo-image" href="login.html" 
-            style="color: #000 !important; text-decoration: none; margin-left: auto; margin-right: auto; font-size: 2.25rem !important;">Rayer Maps</span>
+            style="color: #000 !important; text-decoration: none; margin-left: auto; margin-right: auto; font-size: 2.25rem !important;">Sis<span style="color:green">Coleta</span></span>
         </nav>
 
         <div class="login-page">
@@ -77,7 +77,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <p class="p-small">© Copyright Rayer Maps 2019 Todos os direitos reservados</p>
+                        <p class="p-small">© Copyright SisColeta 2019 Todos os direitos reservados</p>
                     </div>
                 </div>
             </div>

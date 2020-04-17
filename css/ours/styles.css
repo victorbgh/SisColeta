@@ -2862,3 +2862,9 @@ h1.team-h1 {
   .container .info span .fa {
 	color: #EF3B3A;
   }
+
+.aClass{
+	color: #cb4047 !important;
+	text-decoration: underline !important;
+	cursor: pointer;
+}
