@@ -18,6 +18,7 @@
     <link href="css/third/bootstrap.css" rel="stylesheet">
     <link href="css/third/fontawesome-all.css" rel="stylesheet">
     <link href="css/third/swiper.css" rel="stylesheet">
+    <link href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/third/owl.carousel.min.css">
     <link rel="stylesheet" href="css/third/owl.theme.default.min.css">
     <link href="css/third/magnific-popup.css" rel="stylesheet">
@@ -57,16 +58,19 @@
                   <a class="nav-link page-scroll" href="cad-coleta.php">Cadastrar local de coleta </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link page-scroll" href="maps.php">Mapa <span class="sr-only">(current)</span></a>
+                  <a class="nav-link page-scroll current-page" href="maps.php">Mapa <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link page-scroll" href="locais.php">Buscar Locais</a>
               </li>
           </ul>
           <ul class="navbar-nav ml-auto">
               <li class="nav-item dropdown">
                   <a style="color: #000 !important;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-user"></i> Victor</a>
+                  <i class="fa fa-user"></i> <?php echo $_SESSION['nome'] ?> </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Conta</a>
+                      <a class="dropdown-item" href="conta.php"><i class="fa fa-cog"></i> Conta</a>
                       <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalLong" href="" onclick="confirmeSair()"><i class="fa fa-sign-out-alt"></i> Sair</a>
                   </div>
               </li>
@@ -95,56 +99,35 @@
         },
         bar: {
           label: 'B'
-        },
-        // Lixo Eletrônico: {
-        //   label: 'LE'
-        // },
-        // Lixo Hospitalar: {
-        //   label: 'LH'
-        // },
-        // Lixo Reciclável: {
-        //   label: 'LR'
-        // },
-        // Lixo Industrial: {
-        //   label: 'LI'
-        // },
-
+        }
       };
 
-      var map, infoWindow;
+      var pos_ini;
+      var map, infoWindow, markerA, markerB, drag_pos;;
       var posicaoUsuario;
       var inicio = new google.maps.LatLng(-15.81443, -47.88816130000001);
       var fim = new google.maps.LatLng(-15.814179, -47.903618);
-      // NOTE: Calcula a distancia
-      function haversine_distance(mk1, mk2) {
-        var R = 3958.8; // Radius of the Earth in miles
-        var rlat1 = mk1.position.lat() * (Math.PI/180); // Convert degrees to radians
-        var rlat2 = mk2.position.lat() * (Math.PI/180); // Convert degrees to radians
-        var difflat = rlat2-rlat1; // Radian difference (latitudes)
-        var difflon = (mk2.position.lng()-mk1.position.lng()) * (Math.PI/180); // Radian difference (longitudes)
 
-        var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)+Math.cos(rlat1)*Math.cos(rlat2)*Math.sin(difflon/2)*Math.sin(difflon/2)));
-        return d;
-      }
-      // NOTE: EXEMPLO DE USO
-      // const dakota = {lat: 40.7767644, lng: -73.9761399};
-      // const frick = {lat: 40.771209, lng: -73.9673991};
-      // The markers for The Dakota and The Frick Collection
-      // var mk1 = new google.maps.Marker({position: dakota, map: map});
-      // var mk2 = new google.maps.Marker({position: frick, map: map});
-      // var line = new google.maps.Polyline({path: [dakota, frick], map: map});
-      // var distance = haversine_distance(mk1, mk2);
-
-
+      var directionsRenderer1, directionsRenderer2;
       function initMap() {
         var directionsService = new google.maps.DirectionsService;
         var directionsRenderer = new google.maps.DirectionsRenderer;
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -15.814432199999997, lng: -47.888157299999996},
           zoom: 13
-      });
-      infoWindow = new google.maps.InfoWindow;
-
+        });
+        infoWindow = new google.maps.InfoWindow;
+        directionsRenderer1 = new google.maps.DirectionsRenderer({
+            map: map,
+            suppressMarkers: true
+        });
+        directionsRenderer2 = new google.maps.DirectionsRenderer({
+            map: map,
+            suppressMarkers: true,
+            polylineOptions: {
+                strokeColor: "green"
+            }
+        });
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -152,7 +135,7 @@
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
-            posicaoUsuario = pos;
+            pos_ini = pos;
             // infoWindow.setPosition(pos);
             var image = 'http://i.stack.imgur.com/orZ4x.png';
             var marker = new google.maps.Marker({
@@ -163,7 +146,7 @@
                 directionsRenderer.setMap(map);
             var infowincontent = document.createElement('div');
             var strong = document.createElement('strong');
-            strong.textContent = 'Voce está aqui'
+            strong.textContent = 'Voce está aqui!'
             infowincontent.appendChild(strong);
             infowincontent.appendChild(document.createElement('br'));
             marker.addListener('click', function() {
@@ -204,11 +187,10 @@
                 parseFloat(markerElem.getAttribute('lng')));
 
             var infowincontent = document.createElement('div');
-            var strong = document.createElement('h5');
+            var strong = document.createElement('div');
             strong.textContent = name
+            strong.setAttribute('class', 'title-maps');
             infowincontent.appendChild(strong);
-            infowincontent.appendChild(document.createElement('br'));
-
             var text = document.createElement('text');
             text.textContent = address
             infowincontent.appendChild(text);
@@ -235,6 +217,38 @@
               infoWindow.setContent(infowincontent);
               infoWindow.open(map, marker);
             });
+            google.maps.event.addListener(marker, 'click', function(evt) {
+                  var drag_pos1 = {
+                      lat: evt.latLng.lat(),
+                      lng: evt.latLng.lng()
+                  };
+
+                  directionsService.route({
+                          origin: pos_ini,
+                          destination: drag_pos1,
+                          travelMode: 'DRIVING',
+                          provideRouteAlternatives: true
+                      },
+                      function(response, status) {
+                          if (status === 'OK') {
+
+                              for (var i = 0, len = response.routes.length; i < len; i++) {
+                                  if (i === 0) {
+                                      directionsRenderer1.setDirections(response);
+                                      directionsRenderer1.setRouteIndex(i);
+
+                                  } else {
+
+                                      directionsRenderer2.setDirections(response);
+                                      directionsRenderer2.setRouteIndex(i);
+                                  }
+                              }
+                              console.log(response);
+                          } else {
+                              window.alert('Directions request failed due to ' + status);
+                          }
+                      });
+              });
           });
         });
 
@@ -313,6 +327,7 @@
     <script src="js/third/morphext.min.js"></script>
     <script src="js/third/validator.min.js"></script>
     <script src="js/third/owl.carousel.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="js/ours/general.js"></script>
     <script src="js/ours/login.js"></script>
     <script src="js/ours/coleta.js"></script>

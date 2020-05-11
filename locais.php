@@ -1,8 +1,16 @@
 <?php
+    require_once('php/conexao.php');
     session_start();
     if(!isset($_SESSION['loggedIN'])){
         header("Location: login.php");
         exit();
+    }
+ 
+    $sql = "SELECT id, nome, endereco, tipo, lat, lng, cep FROM lugares_coleta";
+    $result = $conn->query($sql);
+    $arr_users = [];
+    if ($result->num_rows > 0) {
+        $arr_users = $result->fetch_all(MYSQLI_ASSOC);
     }
 ?>
 
@@ -20,7 +28,7 @@
     <link href="css/third/bootstrap.css" rel="stylesheet">
     <link href="css/third/fontawesome-all.css" rel="stylesheet">
     <link href="css/third/swiper.css" rel="stylesheet">
-    <link href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
     <link rel="stylesheet" href="css/third/owl.carousel.min.css">
     <link rel="stylesheet" href="css/third/owl.theme.default.min.css">
     <link href="css/third/magnific-popup.css" rel="stylesheet">
@@ -52,7 +60,7 @@
             <div class="collapse navbar-collapse" id="cma-navbars">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll current-page" href="index.php">Inicio <span class="sr-only">(current)</span></a>
+                        <a class="nav-link page-scroll" href="index.php">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="cad-coleta.php">Cadastrar local de coleta</a>
@@ -61,7 +69,7 @@
                         <a class="nav-link page-scroll" href="maps.php">Mapa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="locais.php">Buscar Locais</a>
+                        <a class="nav-link page-scroll current-page" href="locais.php">Buscar Locais <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -81,24 +89,35 @@
         <div class="masked">
             <div class="container box-shadow">
                 <div class="heading" style="padding: 20px;">
-                    <h1>Sis<span style="color:green;">Coleta</span></h1>
-                    <div class="divider"><span></span></div>
-                    <p>
-                        Bem vindo ao Sis<span style="color:green;">Coleta</span>, o objetivo do sistema é centralizar todos os pontos de coleta, descarte e postos de coleta de lixo reciclavel.
-                    </p>
-                    <p>
-                        Os tipos de lixo que estão centralizados no sistema são:
-                    </p>
-                    <br>
-                    <p>- Lixo eletronico</p>
-                    <p>- Lixo hospitalar</p>
-                    <p>- Lixo reciclavel&nbsp;</p>
-                    <br>
-                    <p>No mapa, você tera a opção de mostrar todos pontos cadastrados por todos os usuários, além de ter a possibilidade de filtrar os pontos cadastrados
-                    por tipo.</p>
-                    <br>
-                    <p>Este sistema foi desenvolvido para o trabalho de conclusão de curso da faculdade UPIS - UNIÃO PIONEIRA DE INTEGRAÇÃO SOCIAL pelo curso de sistemas de informação</p>
-                </div>
+                        <h1>Locais de Coleta</h1>
+                        <div class="divider"><span></span></div>
+                <table id="usetTable" class="display">
+                    <thead>
+                        <th>Nome</th>
+                        <th>Endereço</th>
+                        <th>Tipo</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>CEP</th>
+                        <th>Ações</th>
+                    </thead>
+                    <tbody>
+                        <?php if(!empty($arr_users)) { ?>
+                            <?php foreach($arr_users as $user) { ?>
+                                <tr>
+                                    <td><?php echo $user['nome']; ?></td>
+                                    <td><?php echo $user['endereco']; ?></td>
+                                    <td><?php echo $user['tipo']; ?></td>
+                                    <td><?php echo $user['lat']; ?></td>
+                                    <td><?php echo $user['lng']; ?></td>
+                                    <td><?php echo $user['cep']; ?></td>
+                                    <td><button class="btn btn-success"> Editar<?php echo $user['id']; ?> </butoon></td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
             </div>
         </div>
 
@@ -125,10 +144,11 @@
         <script src="js/third/morphext.min.js"></script>
         <script src="js/third/validator.min.js"></script>
         <script src="js/third/owl.carousel.min.js"></script>
-        <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
         <script src="js/ours/general.js"></script>
         <script src="js/ours/login.js"></script>
         <script src="js/ours/coleta.js"></script>
+        <script src="js/ours/locais.js"></script>
     </div>
 </body>
 

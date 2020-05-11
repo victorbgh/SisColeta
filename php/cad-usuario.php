@@ -24,6 +24,7 @@
             if(mysqli_affected_rows($conn) != 0){
                 $_SESSION['loggedIN'] = '1';
                 $_SESSION['email'] = $email;
+                $_SESSION['nome'] = $nome;
                 exit('success');   
             }else{
 

@@ -19,6 +19,7 @@
     <link href="css/third/bootstrap.css" rel="stylesheet">
     <link href="css/third/fontawesome-all.css" rel="stylesheet">
     <link href="css/third/swiper.css" rel="stylesheet">
+    <link href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/third/owl.carousel.min.css">
     <link rel="stylesheet" href="css/third/owl.theme.default.min.css">
     <link href="css/third/magnific-popup.css" rel="stylesheet">
@@ -54,19 +55,22 @@
                         <a class="nav-link page-scroll" href="index.php">Inicio </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="cad-coleta.php">Cadastrar local de coleta <span class="sr-only">(current)</span></a>
+                        <a class="nav-link page-scroll current-page" href="cad-coleta.php">Cadastrar local de coleta <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="maps.php">Mapa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="locais.php">Buscar Locais</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a style="color: #000 !important;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user"></i> Victor</a>
+                        <i class="fa fa-user"></i> <?php echo $_SESSION['nome'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Conta</a>
+                            <a class="dropdown-item" href="conta.php"><i class="fa fa-cog"></i> Conta</a>
                             <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalLong" href="" onclick="confirmeSair()"><i class="fa fa-sign-out-alt"></i> Sair</a>
                         </div>
                     </li>
@@ -161,6 +165,7 @@
         <script src="js/third/morphext.min.js"></script>
         <script src="js/third/validator.min.js"></script>
         <script src="js/third/owl.carousel.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script src="js/ours/general.js"></script>
         <script src="js/ours/login.js"></script>
         <script src="js/ours/coleta.js"></script>

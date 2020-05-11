@@ -45,12 +45,12 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 a {
-	color: #cb4047;
+	color: green;
 	text-decoration: underline;
 }
 
 a:hover {
-	color: #4f0f12;
+	color: green;
 	text-decoration: underline;
 }
 
@@ -1304,7 +1304,7 @@ input[type='checkbox'] {
 
 .copyright {
 	/* padding-top: 1rem; */
-	padding-top: 16px;
+	padding-top: 14px;
 	/* padding-bottom: 0.5rem; */
 	background-color: #013d7f;
 	text-align: center;
@@ -2864,7 +2864,18 @@ h1.team-h1 {
   }
 
 .aClass{
-	color: #cb4047 !important;
+	color: green !important;
 	text-decoration: underline !important;
 	cursor: pointer;
+}
+
+.title-maps{
+	overflow: hidden;
+    font-weight: 500;
+	font-size: 14px;
+	color: #333;
+}
+
+.current-page{
+	color: green !important;
 }

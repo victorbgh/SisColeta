@@ -52,7 +52,7 @@
             <div class="collapse navbar-collapse" id="cma-navbars">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll current-page" href="index.php">Inicio <span class="sr-only">(current)</span></a>
+                        <a class="nav-link page-scroll" href="index.php">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="cad-coleta.php">Cadastrar local de coleta</a>
@@ -70,7 +70,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-user"></i> <?php echo $_SESSION['nome'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="conta.php"><i class="fa fa-cog"></i> Conta</a>
+                            <a class="dropdown-item" href="conta.php"><i class="fa fa-cog"></i> Conta <span class="sr-only">(current)</span></a>
                             <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalLong" href="" onclick="confirmeSair()"><i class="fa fa-sign-out-alt"></i> Sair</a>
                         </div>
                     </li>
