@@ -28,6 +28,7 @@ while ($row_markers = mysqli_fetch_assoc($resultado_markers)){
   echo 'lat="' . $row_markers['lat'] . '" ';
   echo 'lng="' . $row_markers['lng'] . '" ';
   echo 'type="' . $row_markers['tipo'] . '" ';
+  echo 'cep="' . $row_markers['cep'] . '" ';
   echo '/>';
 }
 

@@ -178,10 +178,12 @@
           var xml = data.responseXML;
           var markers = xml.documentElement.getElementsByTagName('marker');
           Array.prototype.forEach.call(markers, function(markerElem) {
+            console.log(markerElem);
             var id = markerElem.getAttribute('id');
             var name = markerElem.getAttribute('name');
             var address = markerElem.getAttribute('address');
             var type = markerElem.getAttribute('type');
+            var cep = markerElem.getAttribute('cep');
             var point = new google.maps.LatLng(
                 parseFloat(markerElem.getAttribute('lat')),
                 parseFloat(markerElem.getAttribute('lng')));
@@ -195,12 +197,13 @@
             text.textContent = address
             infowincontent.appendChild(text);
             infowincontent.appendChild(document.createElement('br'));
-            var rotas = document.createElement('a');
-            rotas.setAttribute('class', 'aClass');
-
-            rotas.setAttribute('tittle', 'Rotas para o local');
-            rotas.textContent = 'Rotas';
-            infowincontent.appendChild(rotas);
+            var tipo = document.createElement('text');
+            tipo.textContent = type;
+            infowincontent.appendChild(tipo);
+            infowincontent.appendChild(document.createElement('br'));
+            var caixaPostal = document.createElement('text');
+            caixaPostal.textContent = cep;
+            infowincontent.appendChild(caixaPostal);
             infowincontent.appendChild(document.createElement('br'));
             var compartilharTexto = document.createElement('a');
             compartilharTexto.setAttribute('href', 'whatsapp://send?text=TITULO &ndash; LINK');

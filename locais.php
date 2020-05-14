@@ -28,7 +28,8 @@
     <link href="css/third/bootstrap.css" rel="stylesheet">
     <link href="css/third/fontawesome-all.css" rel="stylesheet">
     <link href="css/third/swiper.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
     <link rel="stylesheet" href="css/third/owl.carousel.min.css">
     <link rel="stylesheet" href="css/third/owl.theme.default.min.css">
     <link href="css/third/magnific-popup.css" rel="stylesheet">
@@ -111,7 +112,11 @@
                                     <td><?php echo $user['lat']; ?></td>
                                     <td><?php echo $user['lng']; ?></td>
                                     <td><?php echo $user['cep']; ?></td>
-                                    <td><button class="btn btn-success"> Editar<?php echo $user['id']; ?> </butoon></td>
+                                    <td>
+                                    <button class="btn btn-outline-success btn-sm marginbutton" title="Editar Local">
+                                    <a class="fa fa-pencil-alt" onclick="editarLocal(<?php echo $user['id']; ?>)"></a></button>
+                                    <button class="btn btn-danger btn-sm marginbutton" title="Excluir Local">
+                                    <a class="fa fa-times" onclick="excluirLocal(<?php echo $user['id']; ?>)"></a></button>
                                 </tr>
                             <?php } ?>
                         <?php } ?>
@@ -144,7 +149,8 @@
         <script src="js/third/morphext.min.js"></script>
         <script src="js/third/validator.min.js"></script>
         <script src="js/third/owl.carousel.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
         <script src="js/ours/general.js"></script>
         <script src="js/ours/login.js"></script>
         <script src="js/ours/coleta.js"></script>
