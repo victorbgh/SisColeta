@@ -1,15 +1,15 @@
 <?php
     //Usar em ambiente de desenvolvimento, comentar o de teste
-    $servidor = "localhost";
-    $usuario = "root";
-    $senha = "";
-    $dbname = "rayer-maps";    
+    // $servidor = "localhost";
+    // $usuario = "root";
+    // $senha = "";
+    // $dbname = "rayer-maps";    
 
     //Usar quando for commitar, ambiente de teste, comentar o de desenvolvimento e usar estas configurações    
-    // $servidor = "y06qcehxdtkegbeb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
-    // $usuario = "i3n87jtanlh2jrzm";
-    // $senha = "fsw5gbc10hry2fxf";
-    // $dbname = "r0tjw4s3p2fujgyk";  
+    $servidor = "y06qcehxdtkegbeb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
+    $usuario = "i3n87jtanlh2jrzm";
+    $senha = "fsw5gbc10hry2fxf";
+    $dbname = "r0tjw4s3p2fujgyk";  
 
 
 
