@@ -28,11 +28,11 @@
     <link href="css/third/bootstrap.css" rel="stylesheet">
     <link href="css/third/fontawesome-all.css" rel="stylesheet">
     <link href="css/third/swiper.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+    <link rel="stylesheet" href="css/third/datatables.min.css">
     <link rel="stylesheet" href="css/third/owl.carousel.min.css">
     <link rel="stylesheet" href="css/third/owl.theme.default.min.css">
     <link href="css/third/magnific-popup.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="media/css/jquery.dataTables.css">
     <link href="css/ours/styles.css" rel="stylesheet">
 
     <link rel="icon" href="images/faviconCMA.ico">
@@ -92,16 +92,28 @@
                 <div class="heading" style="padding: 20px;">
                         <h1>Locais de Coleta</h1>
                         <div class="divider"><span></span></div>
-                <table id="usetTable" class="display">
-                    <thead>
+                <div class="table-responsive">
+                <table id="coletasTable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
                         <th>Nome</th>
                         <th>Endereço</th>
                         <th>Tipo</th>
                         <th>Latitude</th>
                         <th>Longitude</th>
                         <th>CEP</th>
-                        <th>Ações</th>
-                    </thead>
+                        <th></th>
+                    </tr>
+                    <tr class="filters">
+                        <th>Nome</th>
+                        <th>Endereço</th>
+                        <th>Tipo</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>CEP</th>
+                        <th></th>
+                    </tr>
+                </thead>
                     <tbody>
                         <?php if(!empty($arr_users)) { ?>
                             <?php foreach($arr_users as $user) { ?>
@@ -112,7 +124,7 @@
                                     <td><?php echo $user['lat']; ?></td>
                                     <td><?php echo $user['lng']; ?></td>
                                     <td><?php echo $user['cep']; ?></td>
-                                    <td>
+                                    <td style="width:66px">
                                     <button class="btn btn-outline-success btn-sm marginbutton" title="Editar Local">
                                     <a class="fa fa-pencil-alt" onclick="editarLocal(<?php echo $user['id']; ?>)"></a></button>
                                     <button class="btn btn-danger btn-sm marginbutton" title="Excluir Local">
@@ -122,6 +134,7 @@
                         <?php } ?>
                     </tbody>
                 </table>
+                </div>
             </div>
             </div>
         </div>
@@ -149,8 +162,7 @@
         <script src="js/third/morphext.min.js"></script>
         <script src="js/third/validator.min.js"></script>
         <script src="js/third/owl.carousel.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+        <script src="media/js/jquery.dataTables.js"></script>
         <script src="js/ours/general.js"></script>
         <script src="js/ours/login.js"></script>
         <script src="js/ours/coleta.js"></script>

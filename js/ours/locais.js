@@ -1,6 +1,13 @@
 $('document').ready(function(){
-    $('#usetTable').DataTable({
+    $('#coletasTable thead .filters th').each(function() {
+        var title = $('#coletasTable thead tr:eq(0) th').eq($(this).index()).text();
+        if(title != ""){
+            $(this).html('<input type="text" placeholder="Filtrar em ' + title + '" />');
+        }
+    });
+    var table = $('#coletasTable').DataTable({
         responsive: true,
+        orderCellsTop: true,
         select: false,
         "language": {
             "sEmptyTable": "Nenhum registro encontrado",
@@ -39,25 +46,16 @@ $('document').ready(function(){
                     "_": "%d linhas copiadas com sucesso"
                 }
             }
-        }
+        },
+    });
+ 
+    // Apply the search
+    table.columns().eq(0).each(function(colIdx) {
+        $('input', $('.filters th')[colIdx]).on('keyup change', function() {
+            table
+                .column(colIdx)
+                .search(this.value)
+                .draw();
+        });
     });
 });
-
-
-function buscarLocais(){
-    $('#empTable').DataTable({
-        'processing': true,
-        'serverSide': true,
-        'serverMethod': 'post',
-        'ajax': {
-            'url':'php/c.php'
-        },
-        'columns': [
-           { data: 'endereco' },
-           { data: 'tipo' },
-           { data: 'lat' },
-           { data: 'lng' },
-           { data: 'cep' },
-        ]
-     });
-}

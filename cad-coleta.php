@@ -111,6 +111,10 @@
                                         <option value="valor1" selected>Selecione o tipo de lixo que o local recolhe</option> 
                                         <option value="Lixo eletrônico">Lixo eletrônico</option>
                                         <option value="lixo hospitalar">lixo hospitalar</option>
+                                        <option value="lixo hospitalar">lixo reciclavel</option>
+                                        <option value="pev">PEV - (Ponto de Entrega Voluntária)</option>
+                                        <option value="Comércios">Comércios</option>
+                                        <option value="Cooperativas">Cooperativas</option>
                                     </select>
                                   <div class="help-block with-errors"></div>
                                 </div> 
