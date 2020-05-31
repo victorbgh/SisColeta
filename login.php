@@ -27,7 +27,7 @@
     <title>SisColeta - Login</title>
 </head>
 <body data-spy="scroll" data-target=".fixed-top">
-    <div class="top">
+    <div class="top" style="min-height: 95%;">
 
         <div class="spinner-wrapper">
             <div class="spinner">
@@ -73,8 +73,9 @@
                 </p>
             </div>
         </div>
-
-        <div class="copyright">
+        <br>
+        </div>
+        <div class="copyright " style="bottom: 0;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -98,6 +99,6 @@
         <script src="js/ours/general.js"></script>
         <script src="js/ours/login.js"></script>
         <script src="js/ours/coleta.js"></script>
-    </div>
+
 </body>
 </html>
