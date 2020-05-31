@@ -12,6 +12,21 @@
     if ($result->num_rows > 0) {
         $arr_users = $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    function mask($val, $mask){
+        $maskared = '';
+        $k = 0;
+        for($i = 0; $i<=strlen($mask)-1; $i++){
+            if($mask[$i] == '#'){
+                if(isset($val[$k]))
+                $maskared .= $val[$k++];
+            }else{
+                if(isset($mask[$i]))
+                $maskared .= $mask[$i];
+            }
+        }
+        return $maskared;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -123,7 +138,7 @@
                                     <td><?php echo $user['tipo']; ?></td>
                                     <td><?php echo $user['lat']; ?></td>
                                     <td><?php echo $user['lng']; ?></td>
-                                    <td><?php echo $user['cep']; ?></td>
+                                    <td><?php echo mask($user['cep'], "#####-###"); ?></td>
                                     <td style="width:66px">
                                     <button class="btn btn-outline-success btn-sm marginbutton" title="Editar Local">
                                     <a class="fa fa-pencil-alt" onclick="editarLocal(<?php echo $user['id']; ?>)"></a></button>

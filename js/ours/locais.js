@@ -57,5 +57,5 @@ $('document').ready(function(){
                 .search(this.value)
                 .draw();
         });
-    });
+    });     
 });

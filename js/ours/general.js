@@ -24,7 +24,7 @@
 			var $anchor = $(this);
 			$('html, body').stop().animate({
 				scrollTop: $($anchor.attr('href')).offset().top
-			}, 600, 'easeInOutExpo');
+			}, 150, 'easeInOutExpo');
 			event.preventDefault();
 		});
 	});
@@ -37,7 +37,7 @@
 
 	var a = 0;
 	$(window).scroll(function() {
-		if ($('#counter').length) { // checking if CountTo section exists in the page, if not it will not run the script and avoid errors	
+		if ($('#counter').length) {
 			var oTop = $('#counter').offset().top - window.innerHeight;
 			if (a == 0 && $(window).scrollTop() > oTop) {
 			$('.counter-value').each(function() {
@@ -69,7 +69,7 @@
     
 
     $('body').prepend('<a href="body" class="back-to-top page-scroll">Voltar para o topo</a>');
-    var amountScrolled = 500;
+    var amountScrolled = 0;
     $(window).scroll(function() {
         if ($(window).scrollTop() > amountScrolled) {
             $('a.back-to-top').fadeIn('500');
@@ -136,18 +136,50 @@ $(document).scroll(function() {
     }
  });
 
-/* usar funcao para determinar distancia */
-function getDistance(lat1,lon1,lat2,lon2) {
-    var R = 6371; //Diametro da terra em KM.
-    var dLat = (lat2-lat1) * (Math.PI/180);
-    var dLon = (lon2-lon1) * (Math.PI/180);
-    var a =
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(lat1 * (Math.PI/180)) * Math.cos(lat2 * (Math.PI/180)) *
-      Math.sin(dLon/2) * Math.sin(dLon/2)
-      ;
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    var d = R * c;
-    return d.toFixed(2);
-  }
-  
+ function MascaraCep(cep){
+    if(mascaraInteiro(cep)==false){
+        event.returnValue = false;
+    }       
+    return formataCampo(cep, '00000-000', event);
+}
+
+function formataCampo(campo, Mascara, evento) { 
+    var boleanoMascara; 
+
+    var Digitato = evento.keyCode;
+    exp = /\-|\.|\/|\(|\)| /g
+    campoSoNumeros = campo.toString().replace( exp, "" ); 
+
+    var posicaoCampo = 0;    
+    var NovoValorCampo="";
+    var TamanhoMascara = campoSoNumeros.length;; 
+
+    if (Digitato != 8) { // backspace 
+            for(i=0; i<= TamanhoMascara; i++) { 
+                    boleanoMascara  = ((Mascara.charAt(i) == "-") || (Mascara.charAt(i) == ".")
+                                                            || (Mascara.charAt(i) == "/")) 
+                    boleanoMascara  = boleanoMascara || ((Mascara.charAt(i) == "(") 
+                                                            || (Mascara.charAt(i) == ")") || (Mascara.charAt(i) == " ")) 
+                    if (boleanoMascara) { 
+                            NovoValorCampo += Mascara.charAt(i); 
+                              TamanhoMascara++;
+                    }else { 
+                            NovoValorCampo += campoSoNumeros.charAt(posicaoCampo); 
+                            posicaoCampo++; 
+                      }              
+              }      
+            campo.value = NovoValorCampo;
+            return NovoValorCampo; 
+    }else { 
+            return true; 
+    }
+}
+
+//valida numero inteiro com mascara
+function mascaraInteiro(){
+    if (event.keyCode < 48 || event.keyCode > 57){
+            event.returnValue = false;
+            return false;
+    }
+    return true;
+}

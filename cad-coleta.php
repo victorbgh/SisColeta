@@ -26,6 +26,53 @@
     <link href="css/ours/styles.css" rel="stylesheet">
 
     <link rel="icon" href="images/faviconCMA.ico">
+    <style>
+      #cadMap {
+        height: 20rem;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjchTw42oDieCVSdDFoKWw6Ua69xAf9AQ"></script>
+    <script>
+
+      var cadMap;
+      function initialize() {
+        var mapOptions = {
+          zoom: 8,
+          center: {lat: -15.814432199999997, lng: -47.888157299999996}
+        };
+        cadMap = new google.maps.Map(document.getElementById('cadMap'),
+            mapOptions);
+
+        var marker = new google.maps.Marker({
+          // The below line is equivalent to writing:
+          // position: new google.maps.LatLng(-34.397, 150.644)
+          position: {lat: -15.814432199999997, lng: -47.888157299999996},
+          cadMap: cadMap
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          marker.setMap(null);
+          infowindow.open(cadMap, marker);
+        });
+
+        google.maps.event.addListener(cadMap, 'click', function(event){
+            marker.setMap(null);    
+            marker = new google.maps.Marker({
+                map:       cadMap,
+                position:  event.latLng
+            });     
+        });
+
+        google.maps.event.addListener(cadMap, 'click', function( event ){
+          var lat = event.latLng.lat();
+          var lng = event.latLng.lng();
+          $('#lat').val(lat);
+          $('#lng').val(lng);
+        });
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
@@ -112,26 +159,41 @@
                                         <option value="Lixo eletrônico">Lixo eletrônico</option>
                                         <option value="lixo hospitalar">lixo hospitalar</option>
                                         <option value="lixo hospitalar">lixo reciclavel</option>
-                                        <option value="pev">PEV - (Ponto de Entrega Voluntária)</option>
+                                        <option value="PEV">PEV - (Ponto de Entrega Voluntária)</option>
+                                        <option value="LEV">LEV - (Locais de Entrega Voluntária)</option>
                                         <option value="Comércios">Comércios</option>
                                         <option value="Cooperativas">Cooperativas</option>
                                     </select>
                                   <div class="help-block with-errors"></div>
                                 </div> 
+                              <br>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-12">
+                                <h5>Defina a localização do ponto</h5>
+                                <span style="font-weight: 600;">*Para definir a localização, basta clicar na região do mapa que deseja.</span>
+                                <div class="divider"><span></span></div>
+                              </div>
+                              <div class="col-md-6">
+                                <br>
                                 <div class="form-group">
+                                <label>latitude</label>
                                   <input type="text" placeholder="Latitude" id="lat" class="form-control latitude" name="lat" required data-error="Por favor, digite a latitude">
                                   <div class="help-block with-errors"></div>
                                 </div>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-6">
+                                <br>
                                 <div class="form-group">
+                                  <label>Longitude</label>
                                   <input type="text" placeholder="Longitude" id="lng" class="form-control longitude" name="lng" required data-error="Por favor, digite a longitude">
                                   <div class="help-block with-errors"></div>
                                 </div>
                               </div>
                               <div class="col-md-12">
+                                <div id="cadMap"></div>
+                              </div>
+                              <div class="col-md-12">
+                              <br>
                                 <div class="submit-button text-center">
                                   <button type="button" class="btn btn-success" onclick="registrarPonto()">Cadastrar</button>
                                   <div id="msgSubmit" class="h3 text-center hidden"></div> 

@@ -202,7 +202,7 @@
             infowincontent.appendChild(tipo);
             infowincontent.appendChild(document.createElement('br'));
             var caixaPostal = document.createElement('text');
-            caixaPostal.textContent = cep;
+            caixaPostal.textContent = MascaraCep(cep);
             infowincontent.appendChild(caixaPostal);
             infowincontent.appendChild(document.createElement('br'));
             var compartilharTexto = document.createElement('a');

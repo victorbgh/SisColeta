@@ -7,29 +7,7 @@ $(document).ready(function(){
 		}
 	});
 
-	// var regex = new regex('^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$');
-
-	// var latitude = document.getElementById(lat).value;
-	// var longitude = document.getElementById(lng).value;
-	
-	// var reg = new RegExp("^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}");
-	
-	// if( reg.exec(latitude) ) {
-	//  //do nothing
-	// } else {
-	//  //error
-	// }
-	
-	// if( reg.exec(longitude) ) {
-	//  //do nothing
-	// } else {
-	//  //error
-	// }
-
-	// $('#lat').mask("^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$");
-	// $('#lng').mask("000.000000");
-	$("#cep").mask("99.999-999");
-
+	$("#cep").mask("99999-999");
 });
 
 
@@ -45,6 +23,8 @@ function registrarPonto(){
 	if(!verificarCamposColeta(nome, endereco, cep, tipo, lat, lng)){
 		return false;
 	}else{
+		
+		cep = $("#cep").val().replace('-', '');
 
 		$.ajax({
 			url:"php/cad-marcador.php",

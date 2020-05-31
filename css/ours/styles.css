@@ -2889,3 +2889,11 @@ h1.team-h1 {
 table.dataTable.nowrap th, table.dataTable.nowrap td {
 	white-space: none !important;
 }
+
+label{
+	font-weight: bold;
+}
+
+#lat, #lng{
+	pointer-events: none;
+}
