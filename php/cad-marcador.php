@@ -15,10 +15,12 @@
         $tipo = $conn->real_escape_string($_POST['tipo']);
         $lat = floatval ($conn->real_escape_string($_POST['lat']));
         $lng = floatval ($conn->real_escape_string($_POST['lng']));
+        $telefone = $conn->real_escape_string($_POST['telefone']);
+        $cidade = $conn->real_escape_string($_POST['cidade']);
 
 
 
-        $result_coleta = "INSERT INTO lugares_coleta(nome, endereco, lat, lng, tipo, cep) VALUES ('$nome','$endereco', '$lat', '$lng', '$tipo', '$cep')";
+        $result_coleta = "INSERT INTO lugares_coleta(nome, endereco, lat, lng, tipo, cep, telefone, cidade) VALUES ('$nome','$endereco', '$lat', '$lng', '$tipo', '$cep', '$telefone', '$cidade')";
         $resultado_coleta = mysqli_query($conn, $result_coleta);
         
         if(mysqli_affected_rows($conn) != 0){

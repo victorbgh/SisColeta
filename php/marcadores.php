@@ -29,6 +29,8 @@ while ($row_markers = mysqli_fetch_assoc($resultado_markers)){
   echo 'lng="' . $row_markers['lng'] . '" ';
   echo 'type="' . $row_markers['tipo'] . '" ';
   echo 'cep="' . $row_markers['cep'] . '" ';
+  echo 'telefone="' . parseToXML($row_markers['telefone']) . '" ';
+  echo 'cidade="' . parseToXML($row_markers['cidade']) . '" ';
   echo '/>';
 }
 

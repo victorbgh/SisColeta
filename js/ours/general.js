@@ -1,3 +1,4 @@
+var data;
 (function($) {
     
 	$(window).on('load', function() {
@@ -124,6 +125,12 @@ $(document).ready(function(){
         history.replaceState(null, null, ' ');
       }
 
+    if(window.location.href.indexOf('conta.php') > 0){
+        data = JSON.parse(localStorage.getItem('data'));
+        $('#nomeUsuario').val(data[0].nome);
+        $('#emailUsuario').val(data[0].email);
+        $('#senhaUsuario').val(window.atob(data[0].senha));
+    }
 });
 
 $(document).scroll(function() {
@@ -182,4 +189,74 @@ function mascaraInteiro(){
             return false;
     }
     return true;
+}
+
+function atualizarLogin(){
+    var id = data[0].id;
+    var nome = $('#nomeUsuario').val();
+	var email = $('#emailUsuario').val();
+	var senha = $('#senhaUsuario').val(); 
+	var senhaRepetida = $('#senhaUsuarioRepetida').val(); 
+
+	if(!verificarCamposAtualizacao(nome, email, senha, senhaRepetida)){
+		return false;
+	}else{
+
+		$.ajax({
+			url:"php/editar-usuario.php",
+			method: "POST",
+			data: {
+                login: 1,
+                id: id,
+				nome:nome,
+				email: email,
+				senha: senha,
+				senhaRepetida:senhaRepetida
+			},
+			success :  function(response){						
+				if(response.indexOf('success') >= 0){
+					confirmacaoAtualizarRegistro();
+				}else{
+					$('#msgErroFront').html(response);
+					$('#msgErroFront').show();
+				}
+			},
+			error: function(response){
+				$('#msgErroFront').html("Erro interno no servidor");
+				$('#msgErroFront').show();				
+			},
+			dataType: 'text'
+		})
+	}
+
+	return false;
+}
+
+function verificarCamposAtualizacao(nome, email, senha, senhaRepetida){
+	if(nome == "" || nome == null){
+		$('#msgErroFront').html('Campo nome vazio!');
+		$('#msgErroFront').show();
+		return false;
+	}else if(email == "" || email == null){
+		$('#msgErroFront').html('Campo e-mail vazio!');
+		$('#msgErroFront').show();
+		return false;
+	}else if(senha == "" || senha == null){
+		$('#msgErroFront').html('Informa a senha!');
+		$('#msgErroFront').show();
+		return false;
+	}else if(senhaRepetida == "" || senhaRepetida == null){
+		$('#msgErroFront').html('Repita a senha!');
+		$('#msgErroFront').show();
+		return false;
+	}else if(senha != senhaRepetida){
+		$('#msgErroFront').html('As senhas devem ser identicas!');
+		$('#msgErroFront').show();
+		return false;
+	}
+	return true;
+}
+
+function resetUpdate(){
+    window.location = 'index.php';
 }

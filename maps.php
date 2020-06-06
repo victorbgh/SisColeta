@@ -70,7 +70,7 @@
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-user"></i> <?php echo $_SESSION['nome'] ?> </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="conta.php"><i class="fa fa-cog"></i> Conta</a>
+                      <a class="dropdown-item" href="" onclick=selecionarConta(<?php echo $_SESSION['id'] ?>)><i class="fa fa-cog"></i> Conta</a>
                       <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalLong" href="" onclick="confirmeSair()"><i class="fa fa-sign-out-alt"></i> Sair</a>
                   </div>
               </li>
@@ -82,7 +82,7 @@
 
 
 
-    <div class="copyright">
+    <div class="copyright footer-style">
       <div class="container">
           <div class="row">
               <div class="col-lg-12">
@@ -103,10 +103,10 @@
       };
 
       var pos_ini;
-      var map, infoWindow, markerA, markerB, drag_pos;;
+      var map, infoWindow, markerA, markerB, drag_pos;
       var posicaoUsuario;
-      var inicio = new google.maps.LatLng(-15.81443, -47.88816130000001);
-      var fim = new google.maps.LatLng(-15.814179, -47.903618);
+      // var inicio = new google.maps.LatLng(-15.81443, -47.88816130000001);
+      // var fim = new google.maps.LatLng(-15.814179, -47.903618);
 
       var directionsRenderer1, directionsRenderer2;
       function initMap() {
@@ -178,12 +178,15 @@
           var xml = data.responseXML;
           var markers = xml.documentElement.getElementsByTagName('marker');
           Array.prototype.forEach.call(markers, function(markerElem) {
-            console.log(markerElem);
+            // console.log(markerElem);
             var id = markerElem.getAttribute('id');
             var name = markerElem.getAttribute('name');
             var address = markerElem.getAttribute('address');
             var type = markerElem.getAttribute('type');
             var cep = markerElem.getAttribute('cep');
+            var cidade = markerElem.getAttribute('cidade');
+            var telefone = markerElem.getAttribute('telefone');
+
             var point = new google.maps.LatLng(
                 parseFloat(markerElem.getAttribute('lat')),
                 parseFloat(markerElem.getAttribute('lng')));
@@ -197,19 +200,39 @@
             text.textContent = address
             infowincontent.appendChild(text);
             infowincontent.appendChild(document.createElement('br'));
+
             var tipo = document.createElement('text');
             tipo.textContent = type;
             infowincontent.appendChild(tipo);
             infowincontent.appendChild(document.createElement('br'));
+
+            var city = document.createElement('text');
+            city.textContent = cidade;
+            infowincontent.appendChild(city);
+            infowincontent.appendChild(document.createElement('br'));
+
+            var tel = document.createElement('text');
+            tel.textContent = telefone;
+            infowincontent.appendChild(tel);
+            infowincontent.appendChild(document.createElement('br'));
+
             var caixaPostal = document.createElement('text');
             caixaPostal.textContent = MascaraCep(cep);
             infowincontent.appendChild(caixaPostal);
             infowincontent.appendChild(document.createElement('br'));
-            var compartilharTexto = document.createElement('a');
-            compartilharTexto.setAttribute('href', 'whatsapp://send?text=TITULO &ndash; LINK');
-            compartilharTexto.setAttribute('tittle', 'Acesse de seu smartphone para enviar por WhatsApp');
-            compartilharTexto.textContent = 'Compartilhar';
-            infowincontent.appendChild(compartilharTexto);
+            var distancia = document.createElement('text');
+            distancia.setAttribute('id', 'distanciaPonto');;
+            infowincontent.appendChild(distancia);
+            infowincontent.appendChild(document.createElement('br'));
+            var tempoPonto = document.createElement('text');
+            tempoPonto.setAttribute('id', 'tempoPonto');
+            infowincontent.appendChild(tempoPonto);
+            infowincontent.appendChild(document.createElement('br'));
+            // var compartilharTexto = document.createElement('a');
+            // compartilharTexto.setAttribute('href', 'whatsapp://send?text=TITULO &ndash; LINK');
+            // compartilharTexto.setAttribute('tittle', 'Acesse de seu smartphone para enviar por WhatsApp');
+            // compartilharTexto.textContent = 'Compartilhar';
+            // infowincontent.appendChild(compartilharTexto);
             var icon = customLabel[type] || {};
             var marker = new google.maps.Marker({
               map: map,
@@ -251,6 +274,23 @@
                               window.alert('Directions request failed due to ' + status);
                           }
                       });
+
+                      function CalculaDistancia(origem, destino) {
+                          var service = new google.maps.DistanceMatrixService();
+                          service.getDistanceMatrix(
+                        {
+                            origins: [origem],
+                            destinations: [destino],
+                            travelMode: google.maps.TravelMode.DRIVING
+                        }, callback);
+                      }
+                      function callback(response, status) {
+                          if (status == google.maps.DistanceMatrixStatus.OK) {
+                            $('#distanciaPonto').append(response.rows[0].elements[0].distance.text);
+                            $('#tempoPonto').append(response.rows[0].elements[0].duration.text);
+                          }
+                      }
+                      var i = CalculaDistancia(pos_ini, drag_pos1);
               });
           });
         });

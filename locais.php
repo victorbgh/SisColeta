@@ -6,7 +6,7 @@
         exit();
     }
  
-    $sql = "SELECT id, nome, endereco, tipo, lat, lng, cep FROM lugares_coleta";
+    $sql = "SELECT id, nome, endereco, tipo, lat, lng, cep, telefone, cidade FROM lugares_coleta";
     $result = $conn->query($sql);
     $arr_users = [];
     if ($result->num_rows > 0) {
@@ -36,7 +36,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>SisColeta - Página inicial</title>
+    <title>SisColeta - Lista de pontos de coleta</title>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700?v=0.6" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
@@ -94,7 +94,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-user"></i> <?php echo $_SESSION['nome'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="conta.php"><i class="fa fa-cog"></i> Conta</a>
+                            <a class="dropdown-item" href="" onclick=selecionarConta(<?php echo $_SESSION['id'] ?>)><i class="fa fa-cog"></i> Conta</a>
                             <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalLong" href="" onclick="confirmeSair()"><i class="fa fa-sign-out-alt"></i> Sair</a>
                         </div>
                     </li>
@@ -114,19 +114,23 @@
                         <th>Nome</th>
                         <th>Endereço</th>
                         <th>Tipo</th>
-                        <th>Latitude</th>
-                        <th>Longitude</th>
+                        <!-- <th>Latitude</th>
+                        <th>Longitude</th> -->
                         <th>CEP</th>
-                        <th></th>
+                        <th>Telefone</th>
+                        <th>Cidade</th>
+                        <!-- <th></th> -->
                     </tr>
                     <tr class="filters">
                         <th>Nome</th>
                         <th>Endereço</th>
                         <th>Tipo</th>
-                        <th>Latitude</th>
-                        <th>Longitude</th>
+                        <!-- <th>Latitude</th>
+                        <th>Longitude</th> -->
                         <th>CEP</th>
-                        <th></th>
+                        <th>Telefone</th>
+                        <th>Cidade</th>
+                        <!-- <th></th> -->
                     </tr>
                 </thead>
                     <tbody>
@@ -136,14 +140,16 @@
                                     <td><?php echo $user['nome']; ?></td>
                                     <td><?php echo $user['endereco']; ?></td>
                                     <td><?php echo $user['tipo']; ?></td>
-                                    <td><?php echo $user['lat']; ?></td>
-                                    <td><?php echo $user['lng']; ?></td>
+                                    <!-- <td><?php echo $user['lat']; ?></td> -->
+                                    <!-- <td><?php echo $user['lng']; ?></td> -->
                                     <td><?php echo mask($user['cep'], "#####-###"); ?></td>
-                                    <td style="width:66px">
+                                    <td><?php echo $user['telefone']; ?></td>
+                                    <td><?php echo $user['cidade']; ?></td>
+                                    <!-- <td style="width:66px">
                                     <button class="btn btn-outline-success btn-sm marginbutton" title="Editar Local">
                                     <a class="fa fa-pencil-alt" onclick="editarLocal(<?php echo $user['id']; ?>)"></a></button>
                                     <button class="btn btn-danger btn-sm marginbutton" title="Excluir Local">
-                                    <a class="fa fa-times" onclick="excluirLocal(<?php echo $user['id']; ?>)"></a></button>
+                                    <a class="fa fa-times" onclick="excluirLocal(<?php echo $user['id']; ?>)"></a></button> -->
                                 </tr>
                             <?php } ?>
                         <?php } ?>
@@ -155,7 +161,7 @@
         </div>
 
 
-        <div class="copyright">
+        <div class="copyright footer-style" style="position: unset !important;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">

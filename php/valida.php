@@ -10,7 +10,7 @@
     if (isset($_POST['login'])){
 
         $email = $conn->real_escape_string($_POST['email']);
-        $senha = md5($conn->real_escape_string($_POST['senha']));
+        $senha = base64_encode($conn->real_escape_string($_POST['senha']));
 
         $data = $conn->query("SELECT id, nome FROM usuarios WHERE email='$email' AND senha='$senha'");
 
@@ -19,6 +19,7 @@
             $_SESSION['email'] = $email;
 
             while($row = $data->fetch_assoc()) {
+                $_SESSION['id'] = $row["id"];
                 $_SESSION['nome'] = $row["nome"];
             }
 

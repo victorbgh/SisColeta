@@ -11,8 +11,8 @@
 
         $nome = $conn->real_escape_string($_POST['nome']);
         $email = $conn->real_escape_string($_POST['email']);
-        $senha = md5($conn->real_escape_string($_POST['senha']));
-        $senhaRepetida = md5($conn->real_escape_string($_POST['senhaRepetida']));
+        $senha = base64_encode($conn->real_escape_string($_POST['senha']));
+        $senhaRepetida = base64_encode($conn->real_escape_string($_POST['senhaRepetida']));
 
         if($senha != $senhaRepetida){
             exit("ERRO");
@@ -31,5 +31,8 @@
                exit("erro");  
             }
         }
+
+
+        
     }
 ?>

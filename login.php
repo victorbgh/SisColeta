@@ -75,7 +75,7 @@
         </div>
         <br>
         </div>
-        <div class="copyright " style="bottom: 0;">
+        <div class="copyright footer-style">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">

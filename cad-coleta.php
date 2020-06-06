@@ -117,7 +117,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-user"></i> <?php echo $_SESSION['nome'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="conta.php"><i class="fa fa-cog"></i> Conta</a>
+                            <a class="dropdown-item" href="" onclick=selecionarConta(<?php echo $_SESSION['id'] ?>)><i class="fa fa-cog"></i> Conta</a>
                             <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalLong" href="" onclick="confirmeSair()"><i class="fa fa-sign-out-alt"></i> Sair</a>
                         </div>
                     </li>
@@ -148,7 +148,19 @@
                               </div>
                               <div class="col-md-12">
                                 <div class="form-group">
+                                  <input type="text" class="form-control" id="cidadeColeta" name="cidadeColeta" placeholder="Cidade" required data-error="Por favor, digite a cidade">
+                                  <div class="help-block with-errors"></div>
+                                </div>                                 
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
                                   <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required data-error="Por favor, digite o CEP">
+                                  <div class="help-block with-errors"></div>
+                                </div>                                 
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="telColeta" name="telColeta" placeholder="Telefone" required data-error="Por favor, digite o telefone">
                                   <div class="help-block with-errors"></div>
                                 </div>                                 
                               </div>
@@ -158,7 +170,7 @@
                                         <option value="valor1" selected>Selecione o tipo de lixo que o local recolhe</option> 
                                         <option value="Lixo eletrônico">Lixo eletrônico</option>
                                         <option value="lixo hospitalar">lixo hospitalar</option>
-                                        <option value="lixo hospitalar">lixo reciclavel</option>
+                                        <option value="lixo reciclável">lixo reciclavel</option>
                                         <option value="PEV">PEV - (Ponto de Entrega Voluntária)</option>
                                         <option value="LEV">LEV - (Locais de Entrega Voluntária)</option>
                                         <option value="Comércios">Comércios</option>
@@ -211,7 +223,7 @@
             </div>
         </div>
 
-        <div class="copyright">
+        <div class="copyright footer-style" style="position: unset !important;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">

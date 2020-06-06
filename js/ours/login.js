@@ -166,6 +166,29 @@ function confirmacaoRegistro() {
 		$("#exampleModalLong").modal();
 }
 
+function confirmacaoAtualizarRegistro() {
+	let modalAppend = `<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmação</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span style="font-weight: bold;">Atualização realizado com sucesso</span>
+                </div>
+                    <div class="modal-footer">
+                        <a style="text-decoration: none; color: #fff;" class="btn btn-secondary" data-dismiss="modal" onclick="resetUpdate()">Fechar</a>
+                    </div>
+                </div>
+            </div>
+		</div>`
+		$('body').append(modalAppend);
+		$("#exampleModalLong").modal();
+}
+
 function resetarLogin(){
 	$('#cadNome').val('');
 	$('#cadEmail').val('');
@@ -191,5 +214,27 @@ function resetarLogin(){
 			$('#msgErroFront').show();				
 		},
 		dataType: 'text'
+	})
+}
+
+function selecionarConta(id){	
+	$.ajax({
+		url:"php/buscar-usuario.php",
+		method: "POST",
+		data: { id: id },
+		success :  function(response){						
+			if(response.indexOf('empty') == -1){
+				localStorage.setItem('data', JSON.stringify(response));
+				window.location = 'conta.php';
+			}else{
+				$('#msgErroFront').html(response);
+				$('#msgErroFront').show();
+			}
+		},
+		error: function(response){
+			$('#msgErroFront').html("Erro interno no servidor");
+			$('#msgErroFront').show();				
+		},
+		dataType:"json"
 	})
 }

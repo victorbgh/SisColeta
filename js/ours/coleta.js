@@ -8,6 +8,7 @@ $(document).ready(function(){
 	});
 
 	$("#cep").mask("99999-999");
+	$("#telColeta").mask("(99) 99999-9999");
 });
 
 
@@ -19,8 +20,10 @@ function registrarPonto(){
     var tipo = $('#tipoLixo').val(); 
     var lat = $('#lat').val(); 
 	var lng = $('#lng').val();
+	var cidade = $("#cidadeColeta").val();
+	var telefone = $("#telColeta").val();
 
-	if(!verificarCamposColeta(nome, endereco, cep, tipo, lat, lng)){
+	if(!verificarCamposColeta(nome, endereco, cep, tipo, lat, lng, cidade, telefone)){
 		return false;
 	}else{
 		
@@ -36,7 +39,9 @@ function registrarPonto(){
 				tipo: tipo,
                 lat:lat,
                 lng:lng,
-				cep: cep
+				cep: cep,
+				cidade: cidade,
+				telefone: telefone
 			},
 			success :  function(response){						
 				if(response.indexOf('success') >= 0){
@@ -59,7 +64,7 @@ function registrarPonto(){
 	return false;
 }
 
-function verificarCamposColeta(nome, endereco, cep, tipo, lat, lng){
+function verificarCamposColeta(nome, endereco, cep, tipo, lat, lng, telefone, cidade){
 	if(nome == "" || nome == null){
 		$('#msgErroFront').html('Campo nome vazio!');
 		$('#msgErroFront').show();
@@ -92,6 +97,12 @@ function verificarCamposColeta(nome, endereco, cep, tipo, lat, lng){
 		$('#msgErroFront').html('Informe a longitude válida!');
 		$('#msgErroFront').show();
 		return false;
+	}else if(telefone == "" || telefone == null){
+		$('#msgErroFront').html('Informe um telefone!');
+		$('#msgErroFront').show();
+	}else if(cidade == "" || cidade == null){
+		$('#msgErroFront').html('Informe a cidade!');
+		$('#msgErroFront').show();
 	}
 	return true;
 }

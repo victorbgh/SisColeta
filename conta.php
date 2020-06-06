@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>SisColeta - Página inicial</title>
+    <title>SisColeta - Conta</title>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700?v=0.6" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
@@ -70,7 +70,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-user"></i> <?php echo $_SESSION['nome'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="conta.php"><i class="fa fa-cog"></i> Conta <span class="sr-only">(current)</span></a>
+                            <a class="dropdown-item" href="" onclick=selecionarConta(<?php echo $_SESSION['id'] ?>)><i class="fa fa-cog"></i> Conta <span class="sr-only">(current)</span></a>
                             <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalLong" href="" onclick="confirmeSair()"><i class="fa fa-sign-out-alt"></i> Sair</a>
                         </div>
                     </li>
@@ -80,30 +80,67 @@
 
         <div class="masked">
             <div class="container box-shadow">
-                <div class="heading" style="padding: 20px;">
-                    <h1>Sis<span style="color:green;">Coleta</span></h1>
+                <div class="heading">
+                    <h1>Configurações</h1>
                     <div class="divider"><span></span></div>
-                    <p>
-                        Bem vindo ao Sis<span style="color:green;">Coleta</span>, o objetivo do sistema é centralizar todos os pontos de coleta, descarte e postos de coleta de lixo reciclavel.
-                    </p>
-                    <p>
-                        Os tipos de lixo que estão centralizados no sistema são:
-                    </p>
-                    <br>
-                    <p>- Lixo eletronico</p>
-                    <p>- Lixo hospitalar</p>
-                    <p>- Lixo reciclavel&nbsp;</p>
-                    <br>
-                    <p>No mapa, você tera a opção de mostrar todos pontos cadastrados por todos os usuários, além de ter a possibilidade de filtrar os pontos cadastrados
-                    por tipo.</p>
-                    <br>
-                    <p>Este sistema foi desenvolvido para o trabalho de conclusão de curso da faculdade UPIS - UNIÃO PIONEIRA DE INTEGRAÇÃO SOCIAL pelo curso de sistemas de informação</p>
+                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                        <div class="contact-block">
+                          <form id="updateLogin">
+                            <div class="row justify-content-center">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" placeholder="Nome" required data-error="Por favor, digite o nome">
+                                  <div class="help-block with-errors"></div>
+                                </div>                                 
+                              </div>
+                            </div>
+                            <div class="row justify-content-center">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input type="text" placeholder="Email" id="emailUsuario" class="form-control" name="emailUsuario" required data-error="Por favor, digite o email">
+                                  <div class="help-block with-errors"></div>
+                                </div> 
+                              </div>
+                            </div>
+                            <div class="row justify-content-center">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input type="password" class="form-control" id="senhaUsuario" name="senhaUsuario" placeholder="senhaUsuario" required data-error="Por favor, digite a senha">
+                                  <div class="help-block with-errors"></div>
+                                </div>                                 
+                              </div>
+                            </div>
+                            <div class="row justify-content-center">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <input type="password" class="form-control" id="senhaUsuarioRepetida" name="senhaUsuarioRepetida" placeholder="Repita a senha" required data-error="Por favor, digite a senha">
+                                  <div class="help-block with-errors"></div>
+                                </div>                                 
+                              </div>
+                            </div>
+                              </div>
+                              <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                    <br>
+                                    <div class="submit-button text-center">
+                                    <button type="button" class="btn btn-success" onclick="atualizarLogin()">Atualizar</button>
+                                    <div id="msgSubmit" class="h3 text-center hidden"></div> 
+                                    <div class="clearfix"></div> 
+                                    </div>
+                                </div>
+                              </div>          
+                          </form>
+                          <br>
+                          <p id="msgErroFront" class="text-center text-danger"></p>
+                          <br>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
 
-        <div class="copyright">
+        <div class="copyright footer-style">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
