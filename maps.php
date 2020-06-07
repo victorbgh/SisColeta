@@ -99,7 +99,31 @@
         },
         bar: {
           label: 'B'
+        },
+        PEV: {
+          label: 'PEV'
+        },
+        LEV: {
+          label: 'LEV',
+        },
+        Cooperativas: {
+          label: 'COP'
+        },
+        Comércios: {
+          label: 'CME'
+        },
+        lixoreciclável: {
+          label: 'LR'
+        },
+        Lixoeletrônico: {
+          label: 'LE'
+        },
+        lixohospitalar: {
+          label: 'LH'
         }
+        
+
+
       };
 
       var pos_ini;
@@ -228,12 +252,9 @@
             tempoPonto.setAttribute('id', 'tempoPonto');
             infowincontent.appendChild(tempoPonto);
             infowincontent.appendChild(document.createElement('br'));
-            // var compartilharTexto = document.createElement('a');
-            // compartilharTexto.setAttribute('href', 'whatsapp://send?text=TITULO &ndash; LINK');
-            // compartilharTexto.setAttribute('tittle', 'Acesse de seu smartphone para enviar por WhatsApp');
-            // compartilharTexto.textContent = 'Compartilhar';
-            // infowincontent.appendChild(compartilharTexto);
-            var icon = customLabel[type] || {};
+            
+            var typeSemEspaco = type.replace(/\s/g, '');
+            var icon = customLabel[typeSemEspaco] || {};
             var marker = new google.maps.Marker({
               map: map,
               position: point,
