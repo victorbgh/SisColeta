@@ -70,7 +70,7 @@
                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-user"></i> <?php echo $_SESSION['nome'] ?> </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="" onclick=selecionarConta(<?php echo $_SESSION['id'] ?>)><i class="fa fa-cog"></i> Conta</a>
+                      <a class="dropdown-item" href="#" onclick=selecionarConta(<?php echo $_SESSION['id'] ?>)><i class="fa fa-cog"></i> Conta</a>
                       <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalLong" href="" onclick="confirmeSair()"><i class="fa fa-sign-out-alt"></i> Sair</a>
                   </div>
               </li>
