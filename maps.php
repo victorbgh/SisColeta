@@ -161,7 +161,7 @@
             };
             pos_ini = pos;
             // infoWindow.setPosition(pos);
-            var image = 'http://i.stack.imgur.com/orZ4x.png';
+            var image = 'images/localizacaoAtual.png';
             var marker = new google.maps.Marker({
                     position: pos,
                     map: map,
