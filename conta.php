@@ -140,7 +140,7 @@
         </div>
 
 
-        <div class="copyright footer-style">
+        <div class="copyright footer-style" style="position: unset;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
