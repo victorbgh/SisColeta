@@ -86,7 +86,7 @@
       <div class="container">
           <div class="row">
               <div class="col-lg-12">
-                  <p class="p-small">© Copyright SisColeta 2019 Todos os direitos reservados</p>
+                  <p class="p-small">© Copyright SisColeta 2020 Todos os direitos reservados</p>
               </div>
           </div>
       </div>
