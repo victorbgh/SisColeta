@@ -4,6 +4,7 @@
         header("Location: login.php");
         exit();
     }
+    $session_value=(isset($_SESSION['admin']))?$_SESSION['admin']:'';
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +28,11 @@
     <link href="css/ours/styles.css" rel="stylesheet">
 
     <link rel="icon" href="images/faviconCMA.ico">
+
+    <script type="text/javascript">
+      var myvar = '<?php echo $session_value;?>';
+      localStorage.setItem('admin', myvar);
+    </script>
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
@@ -54,7 +60,7 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="index.php">Inicio</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="cadColeta">
                         <a class="nav-link page-scroll" href="cad-coleta.php">Cadastrar local de coleta</a>
                     </li>
                     <li class="nav-item">

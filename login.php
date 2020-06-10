@@ -4,6 +4,7 @@
         header('Location: ../index.php');
         exit();
     }
+    $session_value=(isset($_SESSION['admin']))?$_SESSION['admin']:'';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +26,11 @@
     <link rel="icon" href="">
     
     <title>SisColeta - Login</title>
+
+    <script type="text/javascript">
+      var myvar = '<?php echo $session_value;?>';
+      localStorage.setItem('admin', myvar);
+    </script>
 </head>
 <body data-spy="scroll" data-target=".fixed-top">
     <div class="top" style="min-height: 95%;">

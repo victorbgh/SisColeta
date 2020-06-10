@@ -33,6 +33,7 @@ function registrar(){
 			method: "POST",
 			data: {
 				login: 1,
+				admin: false,
 				nome:nome,
 				email: email,
 				senha: senha,

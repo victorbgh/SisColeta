@@ -96,7 +96,13 @@ function toggleIcon(e) {
 
 
 $(document).ready(function(){
-
+	var isadm = localStorage.getItem('admin');
+	if(isadm == 1){
+		$("#cadColeta").show();
+	}else{
+		$("#cadColeta").hide();
+	}
+	
     $('.message a').click(function(){
         $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
      });

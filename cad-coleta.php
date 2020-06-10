@@ -1,9 +1,10 @@
 <?php
     session_start();
-    if(!isset($_SESSION['loggedIN'])){
+    if(!isset($_SESSION['loggedIN']) && isset($_SESSION['admin']) == 1){
         header("Location: login.php");
         exit();
     }
+    $session_value=(isset($_SESSION['admin']))?$_SESSION['admin']:'';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -73,6 +74,11 @@
 
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
+
+  <script type="text/javascript">
+      var myvar = '<?php echo $session_value;?>';
+      localStorage.setItem('admin', myvar);
+  </script>
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
@@ -101,7 +107,7 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="index.php">Inicio </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" id="cadColeta">
                         <a class="nav-link page-scroll current-page" href="cad-coleta.php">Cadastrar local de coleta <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">

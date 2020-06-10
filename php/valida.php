@@ -12,15 +12,16 @@
         $email = $conn->real_escape_string($_POST['email']);
         $senha = base64_encode($conn->real_escape_string($_POST['senha']));
 
-        $data = $conn->query("SELECT id, nome FROM usuarios WHERE email='$email' AND senha='$senha'");
+        $data = $conn->query("SELECT * FROM usuarios WHERE email='$email' AND senha='$senha'");
 
         if($data->num_rows > 0){
             $_SESSION['loggedIN'] = '1';
             $_SESSION['email'] = $email;
-
+            
             while($row = $data->fetch_assoc()) {
                 $_SESSION['id'] = $row["id"];
                 $_SESSION['nome'] = $row["nome"];
+                $_SESSION['admin'] = $row["admin"];
             }
 
             exit('success');
