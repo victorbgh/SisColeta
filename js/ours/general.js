@@ -136,7 +136,38 @@ $(document).ready(function(){
         $('#nomeUsuario').val(data[0].nome);
         $('#emailUsuario').val(data[0].email);
         $('#senhaUsuario').val(window.atob(data[0].senha));
-    }
+	}
+
+	if(window.location.href.indexOf('edit-coleta.php') > 0){
+        data = JSON.parse(localStorage.getItem('data'));
+        $('#nomeColeta').val(data[0].nome);
+        $('#endereco').val(data[0].endereco);
+		$('#cidadeColeta').val(data[0].cidade);
+		$('#cep').val(data[0].cep);
+		$('#telColeta').val(data[0].telefone);
+		$('#tipoLixo').val(data[0].tipo);
+		$('#lat').val(data[0].lat);
+		$('#lng').val(data[0].lng);
+
+		var latLocal = parseFloat(data[0].lat);
+		var lngLocal = parseFloat(data[0].lat);
+
+		// var myLatLng = {lat: -25.363, lng: 131.044};
+		// var local = {lat:}
+
+		// var map = new google.maps.Map(document.getElementById('cadMap'), {
+		//   zoom: 4,
+		//   center: myLatLng
+		// });
+
+		// var marker = new google.maps.Marker({
+		//   position: myLatLng,
+		//   map: map,
+		//   title: 'Hello World!'
+		// });
+
+	}
+	
 });
 
 $(document).scroll(function() {

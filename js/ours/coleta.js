@@ -138,7 +138,6 @@ function confirmacaoCadastroColeta() {
 		$("#exampleModalLong").modal();
 }
 
-//mudar
 function limparCampos(){
 	$('#nomeColeta').val('');
 	$('#endereco').val('');
@@ -146,4 +145,155 @@ function limparCampos(){
 	$('#tipoLixo').val('valor1');
 	$('#lat').val('');
 	$('#lng').val('');
+}
+
+function editarLocal(id){
+	$.ajax({
+		url:"php/buscar-editar-ponto.php",
+		method: "POST",
+		data: { id: id },
+		success :  function(response){						
+			if(response.indexOf('empty') == -1){
+				localStorage.removeItem('lat');
+				localStorage.removeItem('lng');
+				localStorage.setItem('lat', response[0].lat);
+				localStorage.setItem('lng', response[0].lng);
+				localStorage.setItem('data', JSON.stringify(response));
+				window.location = 'edit-coleta.php';
+			}else{
+				$('#msgErroFront').html(response);
+				$('#msgErroFront').show();
+			}
+		},
+		error: function(response){
+			$('#msgErroFront').html("Erro interno no servidor");
+			$('#msgErroFront').show();				
+		},
+		dataType:"json"
+	});
+}
+
+function editarMarcador(){
+	var id = data[0].id;
+	var nome = $('#nomeColeta').val();
+	var endereco = $('#endereco').val();
+    var cep = $('#cep').val();
+    var tipo = $('#tipoLixo').val(); 
+    var lat = $('#lat').val(); 
+	var lng = $('#lng').val();
+	var cidade = $("#cidadeColeta").val();
+	var telefone = $("#telColeta").val();
+
+	if(!verificarCamposColeta(nome, endereco, cep, tipo, lat, lng, cidade, telefone)){
+		return false;
+	}else{
+		
+		cep = $("#cep").val().replace('-', '');
+
+		$.ajax({
+			url:"php/editar-marcador.php",
+			method: "POST",
+			data: {
+				id: id,
+                coleta: 1,
+                nome: nome,
+				endereco:endereco,
+				tipo: tipo,
+                lat:lat,
+                lng:lng,
+				cep: cep,
+				cidade: cidade,
+				telefone: telefone
+			},
+			success :  function(response){						
+				if(response.indexOf('success') >= 0){
+					console.log("deu certo carai");
+					confirmacaoEdicaoColeta();
+					limparCampos()
+				}else{
+					$('#msgErroFront').html("Erro interno no servidor");
+					$('#msgErroFront').show();
+				}
+			},
+			error: function(response){
+				$('#msgErroFront').html("Erro interno no servidor");
+				$('#msgErroFront').show();				
+			},
+			dataType: 'text'
+		})
+	}
+
+	return false;
+}
+
+function confirmacaoEdicaoColeta() {
+	let modalAppend = `<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmação</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span style="font-weight: bold;">Edição de ponto de coleta realizado com sucesso</span>
+                </div>
+                    <div class="modal-footer">
+                        <a style="text-decoration: none; color: #fff;" class="btn btn-primary" onclick="redirecionar()" >Fechar</a>
+                    </div>
+                </div>
+            </div>
+		</div>`
+		$('body').append(modalAppend);
+		$("#exampleModalLong").modal();
+}
+
+function redirecionar(){
+	window.location = 'locais.php';
+}
+
+function ExcluirMarcador(id){
+	$.ajax({
+		url:"php/excluir-marcador.php",
+		method: "POST",
+		data: { id: id },
+		success :  function(response){						
+			if(response.statusCode == 200){
+				location.reload();
+			}else{
+				$('#msgErroFront').html(response);
+				$('#msgErroFront').show();
+			}
+		},
+		error: function(response){
+			$('#msgErroFront').html("Erro interno no servidor");
+			$('#msgErroFront').show();				
+		},
+		dataType:"json"
+	});
+}
+
+function confirmacaoExclusaoColeta(id) {
+	let modalAppend = `<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmação</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span style="font-weight: bold;">Deseja excluir o ponto de coleta?</span>
+				</div>
+					<div class="modal-footer">
+                        <a style="text-decoration: none; color: #fff;" class="btn btn-danger" onclick="ExcluirMarcador(${id})" > Confirmar </a>
+                        <a style="text-decoration: none; color: #fff;" class="btn btn-primary" data-dismiss="modal">Fechar</a>
+                    </div>
+                </div>
+            </div>
+		</div>`
+		$('body').append(modalAppend);
+		$("#exampleModalLong").modal();
 }
