@@ -122,7 +122,7 @@
                         <th>CEP</th>
                         <th>Telefone</th>
                         <th>Cidade</th>
-                        <th></th>
+                        <th class="listaLocaisEdit"></th>
                     </tr>
                     <tr class="filters">
                         <th>Nome</th>
@@ -131,7 +131,7 @@
                         <th>CEP</th>
                         <th>Telefone</th>
                         <th>Cidade</th>
-                        <th></th>
+                        <th class="listaLocaisEdit"></th>
                     </tr>
                 </thead>
                     <tbody>
@@ -146,11 +146,12 @@
                                     <td><?php echo mask($user['cep'], "#####-###"); ?></td>
                                     <td><?php echo $user['telefone']; ?></td>
                                     <td><?php echo $user['cidade']; ?></td>
-                                    <td style="width:66px">
+                                    <td class="listaLocaisEdit" style="width:66px">
                                     <button class="btn btn-outline-success btn-sm marginbutton" title="Editar Local">
                                     <a class="fa fa-pencil-alt" onclick="editarLocal(<?php echo $user['id']; ?>)"></a></button>
                                     <button class="btn btn-danger btn-sm marginbutton" title="Excluir Local">
                                     <a class="fa fa-times" onclick="confirmacaoExclusaoColeta(<?php echo $user['id']; ?>)"></a></button>
+                                    </td>
                                 </tr>
                             <?php } ?>
                         <?php } ?>

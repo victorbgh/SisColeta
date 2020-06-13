@@ -99,8 +99,10 @@ $(document).ready(function(){
 	var isadm = localStorage.getItem('admin');
 	if(isadm == 1){
 		$("#cadColeta").show();
+		$('.listaLocaisEdit').show();
 	}else{
 		$("#cadColeta").hide();
+		$('.listaLocaisEdit').hide();
 	}
 	
     $('.message a').click(function(){
