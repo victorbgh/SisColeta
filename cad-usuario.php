@@ -1,12 +1,11 @@
 <?php
     session_start();
-    if(!isset($_SESSION['loggedIN'])){
+    if(!isset($_SESSION['loggedIN']) && isset($_SESSION['admin']) == 1){
         header("Location: login.php");
         exit();
     }
     $session_value=(isset($_SESSION['admin']))?$_SESSION['admin']:'';
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -14,7 +13,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>SisColeta - Conta</title>
+    <title>SisColeta - Cadastrar usuário</title>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700?v=0.6" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
@@ -29,10 +28,10 @@
 
     <link rel="icon" href="images/faviconCMA.ico">
 
-    <script type="text/javascript">
+  <script type="text/javascript">
       var myvar = '<?php echo $session_value;?>';
       localStorage.setItem('admin', myvar);
-    </script>
+  </script>
 </head>
 
 <body data-spy="scroll" data-target=".fixed-top">
@@ -47,9 +46,8 @@
         </div>
 
         <div id="header" class="navtop"></div>
-
         <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
-            <a class="navbar-brand logo-image" href="index.php" style="color: #000 !important; text-decoration: none;">Sis<span style="color:green;">Coleta</span></a>
+                    <a class="navbar-brand logo-image" href="index.php" style="color: #000 !important; text-decoration: none;">Sis<span style="color:green;">Coleta</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cma-navbars"
                 aria-controls="cma-navbars" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-awesome fas fa-bars"></span>
@@ -58,10 +56,10 @@
             <div class="collapse navbar-collapse" id="cma-navbars">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="index.php">Inicio</a>
+                        <a class="nav-link page-scroll" href="index.php">Inicio </a>
                     </li>
                     <li class="nav-item" id="cadColeta">
-                        <a class="nav-link page-scroll" href="cad-coleta.php">Cadastrar local de coleta</a>
+                        <a class="nav-link page-scroll " href="cad-coleta.php">Cadastrar local de coleta</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="maps.php">Mapa</a>
@@ -70,7 +68,7 @@
                         <a class="nav-link page-scroll" href="locais.php">Buscar Locais</a>
                     </li>
                     <li class="nav-item" id="cad-user">
-                        <a class="nav-link page-scroll" href="cad-usuario.php">Cadastrar usuário</a>
+                        <a class="nav-link page-scroll current-page" href="cad-usuario.php">Cadastrar usuário <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
@@ -79,7 +77,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-user"></i> <?php echo $_SESSION['nome'] ?> </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="" onclick=selecionarConta(<?php echo $_SESSION['id'] ?>)><i class="fa fa-cog"></i> Conta <span class="sr-only">(current)</span></a>
+                            <a class="dropdown-item" href="#" onclick=selecionarConta(<?php echo $_SESSION['id'] ?>) ><i class="fa fa-cog"></i> Conta</a>
                             <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalLong" href="" onclick="confirmeSair()"><i class="fa fa-sign-out-alt"></i> Sair</a>
                         </div>
                     </li>
@@ -90,15 +88,15 @@
         <div class="masked">
             <div class="container box-shadow">
                 <div class="heading">
-                    <h1>Configurações</h1>
+                    <h1>Cadastrar usuário</h1>
                     <div class="divider"><span></span></div>
                     <div class="col-lg-12 col-sm-12 col-xs-12">
                         <div class="contact-block">
-                          <form id="updateLogin">
+                          <form id="cadUserAdm">
                             <div class="row justify-content-center">
                               <div class="col-md-6">
                                 <div class="form-group">
-                                  <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" placeholder="Nome" required data-error="Por favor, digite o nome">
+                                  <input type="text" class="form-control" id="nomeUsuario" name="nomeUsuario" placeholder="Nome completo do usuário" required data-error="Por favor, digite o nome do usuário">
                                   <div class="help-block with-errors"></div>
                                 </div>                                 
                               </div>
@@ -114,7 +112,7 @@
                             <div class="row justify-content-center">
                               <div class="col-md-6">
                                 <div class="form-group">
-                                  <input type="password" class="form-control" id="senhaUsuario" name="senhaUsuario" placeholder="senhaUsuario" required data-error="Por favor, digite a senha">
+                                  <input type="password" class="form-control" id="senhaUsuario" name="senhaUsuario" placeholder="Senha" required data-error="Por favor, digite a senha">
                                   <div class="help-block with-errors"></div>
                                 </div>                                 
                               </div>
@@ -122,22 +120,32 @@
                             <div class="row justify-content-center">
                               <div class="col-md-6">
                                 <div class="form-group">
-                                  <input type="password" class="form-control" id="senhaUsuarioRepetida" name="senhaUsuarioRepetida" placeholder="Repita a senha" required data-error="Por favor, digite a senha">
+                                  <input type="password" class="form-control" id="senhaRepetida" name="senhaRepetida" placeholder="Repita a senha" required data-error="Por favor, digite novamente a senha">
                                   <div class="help-block with-errors"></div>
                                 </div>                                 
                               </div>
                             </div>
-                              </div>
-                              <div class="row justify-content-center">
-                                <div class="col-md-6">
-                                    <br>
-                                    <div class="submit-button text-center">
-                                    <button type="button" class="btn btn-success" onclick="atualizarLogin()">Atualizar</button>
-                                    <div id="msgSubmit" class="h3 text-center hidden"></div> 
-                                    <div class="clearfix"></div> 
-                                    </div>
+                            <div class="row justify-content-center">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                    <select name="select" class="form-control" id="tipoUsuario">
+                                        <option value="adm">Administrador</option>
+                                        <option value="comum" selected>Usuário comum</option>
+                                    </select>
+                                    <div class="help-block with-errors"></div>
+                                </div> 
+                            </div>
+                            </div>
+                            <br>
+                            <div class="row justify-content-center">
+                              <div class="col-md-6">
+                                <div class="submit-button text-center">
+                                  <button type="button" class="btn btn-success" onclick="cadUsuario()">Cadastrar</button>
+                                  <div id="msgSubmit" class="h3 text-center hidden"></div> 
+                                  <div class="clearfix"></div> 
                                 </div>
-                              </div>          
+                              </div>
+                            </div>
                           </form>
                           <br>
                           <p id="msgErroFront" class="text-center text-danger"></p>
@@ -148,8 +156,7 @@
             </div>
         </div>
 
-
-        <div class="copyright footer-style" style="position: unset;">
+        <div class="copyright footer-style" style="position: unset !important;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -158,8 +165,6 @@
                 </div>
             </div>
         </div>
-
-        
 
         <script src="js/third/jquery.min.js"></script>
         <script src="js/third/jquery.mask.min.js"></script>

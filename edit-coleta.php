@@ -116,6 +116,9 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="locais.php">Buscar Locais</a>
                     </li>
+                    <li class="nav-item" id="cad-user">
+                        <a class="nav-link page-scroll" href="cad-usuario.php">Cadastrar usuário</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">

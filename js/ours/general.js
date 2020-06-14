@@ -100,9 +100,11 @@ $(document).ready(function(){
 	if(isadm == 1){
 		$("#cadColeta").show();
 		$('.listaLocaisEdit').show();
+		$('#cad-user').show();
 	}else{
 		$("#cadColeta").hide();
 		$('.listaLocaisEdit').hide();
+		$('#cad-user').hide();
 	}
 	
     $('.message a').click(function(){

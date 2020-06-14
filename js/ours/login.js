@@ -158,7 +158,7 @@ function confirmacaoRegistro() {
                     <span style="font-weight: bold;">Cadastro realizado com sucesso</span>
                 </div>
                     <div class="modal-footer">
-                        <a style="text-decoration: none; color: #fff;" class="btn btn-secondary" data-dismiss="modal" onclick="resetarLogin()">Fechar</a>
+                        <a style="text-decoration: none; color: #fff;" class="btn btn-success" data-dismiss="modal" onclick="resetarLogin()">Fechar</a>
                     </div>
                 </div>
             </div>
@@ -238,4 +238,74 @@ function selecionarConta(id){
 		},
 		dataType:"json"
 	})
+}
+
+function cadUsuario(){
+	var nome = $('#nomeUsuario').val();
+	var email = $('#emailUsuario').val();
+	var senha = $('#senhaUsuario').val(); 
+	var senhaRepetida = $('#senhaRepetida').val();
+	var tipo = $('#tipoUsuario').val(); 
+	
+
+	if(!verificarCampos(nome, email, senha, senhaRepetida)){
+		return false;
+	}else{
+		if (tipo == "adm"){
+			tipo = 1;
+		}else{
+			tipo = 0;
+		}
+
+		$.ajax({
+			url:"php/cad-usuario-adm.php",
+			method: "POST",
+			data: {
+				nome:nome,
+				email: email,
+				senha: senha,
+				senhaRepetida:senhaRepetida,
+				admin: tipo
+			},
+			success :  function(response){						
+				if(response.indexOf('success') >= 0){
+					document.getElementById("cadUserAdm").reset();
+					confirmacaoCadUserAdm();
+				}else{
+					$('#msgErroFront').html(response);
+					$('#msgErroFront').show();
+				}
+			},
+			error: function(response){
+				$('#msgErroFront').html("Erro interno no servidor");
+				$('#msgErroFront').show();				
+			},
+			dataType: 'text'
+		})
+	}
+
+	return false;
+}
+
+function confirmacaoCadUserAdm() {
+	let modalAppend = `<div class="modal fade" id="confirmacaoCadUserAdmModal" tabindex="-1" role="dialog" aria-labelledby="confirmacaoCadUserAdm" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmacaoCadUserAdm">Confirmação</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span style="font-weight: bold;">Cadastro realizado com sucesso</span>
+                </div>
+                    <div class="modal-footer">
+                        <a style="text-decoration: none; color: #fff;" class="btn btn-success" data-dismiss="modal">Fechar</a>
+                    </div>
+                </div>
+            </div>
+		</div>`
+		$('body').append(modalAppend);
+		$("#confirmacaoCadUserAdmModal").modal();
 }
