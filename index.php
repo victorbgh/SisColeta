@@ -104,13 +104,13 @@
                     <p>Locais em que recebem o descarte de chapas 
                     de raio-x, ultrassom ou tomografia.</p>
                     <br>
-                    <p><b>- Lixo reciclavel&nbsp;</b></p>
+                    <!-- <p><b>- Lixo reciclavel&nbsp;</b></p>
                     <br>
                     <p>Residuos destinados para reciclagem como papel, pet, alumínio, vidro, metal.</p>
-                    <br>
+                    <br> -->
                     <p><b>- PEV (Ponto de Entrega Voluntária)</b></p>
                     <br>
-                    <p>São os locais que recebem embalagens longa vida (entre outros materiais) para serem enviados à reciclagem. é o primeiro passo do processo, 
+                    <p>São os locais que recebem embalagens longa vida (entre outros materiais) para serem enviados à reciclagem. É o primeiro passo do processo, 
                     onde o material doméstico (pouco volume) geralmente é entregue.</p>
                     <br>
                     <p><b>- LEV (Locais de Entrega Voluntária)</b></p>
