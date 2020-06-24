@@ -118,16 +118,16 @@
                     <p> Locais de Entrega Voluntária de Resíduos Recicláveis. São contêineres, sacos ou outros dispositivos instalados em espaços públicos
                      ou privados monitorados, para recebimento de recicláveis.</p>
                     <br>
-                    <p><b>- Comércios</b></p>
+                    <!-- <p><b>- Comércios</b></p>
                     <br>
                     <p>Locais que compram material longa vida (e outros materiais recicláveis) para beneficiamento e envio aos recicladores. 
                     Eles adquirem o material, geralmente em grande quantidade, principalmente das cooperativas. </p>
-                    <br>
-                    <p><b>- Cooperativas</b></p>
+                    <br> -->
+                    <!-- <p><b>- Cooperativas</b></p>
                     <br>
                     <p>Iniciativas sociais que trabalham com a coleta e triagem do material reciclável (inclusive embalagem longa vida) para beneficiamento e 
                     envio aos recicladores.</p>
-                    <br>
+                    <br> -->
                     <br>
                     <p>No mapa, você tera a opção de mostrar todos pontos cadastrados por todos os usuários com sua distância e tempo, além de ter a possibilidade listar os pontos
                     filtrando pelo o que deseja.</p>

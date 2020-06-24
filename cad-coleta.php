@@ -182,8 +182,8 @@
                                         <!-- <option value="lixo reciclável">lixo reciclavel</option> -->
                                         <option value="PEV">PEV - (Ponto de Entrega Voluntária)</option>
                                         <option value="LEV">LEV - (Locais de Entrega Voluntária)</option>
-                                        <option value="Comércios">Comércios</option>
-                                        <option value="Cooperativas">Cooperativas</option>
+                                        <!-- <option value="Comércios">Comércios</option>
+                                        <option value="Cooperativas">Cooperativas</option> -->
                                     </select>
                                   <div class="help-block with-errors"></div>
                                 </div> 
