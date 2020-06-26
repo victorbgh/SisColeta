@@ -129,7 +129,7 @@ function confirmacaoCadastroColeta() {
                     <span style="font-weight: bold;">Cadastro de ponto de coleta realizado com sucesso</span>
                 </div>
                     <div class="modal-footer">
-                        <a style="text-decoration: none; color: #fff;" class="btn btn-primary" data-dismiss="modal" >Fechar</a>
+                        <a style="text-decoration: none; color: #fff;" class="btn btn-primary" onclick="redirecionarMapa()" >Fechar</a>
                     </div>
                 </div>
             </div>
@@ -138,10 +138,16 @@ function confirmacaoCadastroColeta() {
 		$("#exampleModalLong").modal();
 }
 
+function redirecionarMapa(){
+	window.location = 'maps.php';
+}
+
 function limparCampos(){
 	$('#nomeColeta').val('');
 	$('#endereco').val('');
 	$('#cep').val('');
+	$('#cidadeColeta').val('');
+	$('#telColeta').val('');
 	$('#tipoLixo').val('valor1');
 	$('#lat').val('');
 	$('#lng').val('');
