@@ -387,7 +387,7 @@
       
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjchTw42oDieCVSdDFoKWw6Ua69xAf9AQ&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?keyYOUR-API-KEY&callback=initMap"
     async defer></script>
     <script src="js/third/jquery.min.js"></script>
     <script src="js/third/jquery.mask.min.js"></script>

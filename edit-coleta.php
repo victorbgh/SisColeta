@@ -32,7 +32,7 @@
         height: 20rem;
       }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjchTw42oDieCVSdDFoKWw6Ua69xAf9AQ"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=API-KEY-KEY"></script>
     <script>
 
       var cadMap;
